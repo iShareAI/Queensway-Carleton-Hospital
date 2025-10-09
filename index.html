@@ -1,0 +1,1771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Queensway Carleton Hospital — Ishare 360°</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    html, body { height: 100%; margin: 0; }
+    body { background: #ffffff; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans"; }
+
+    
+    
+    
+    
+    
+    
+    /* Centered responsive container */
+    #viewer {
+      position: relative;
+      width: min(1200px, 95vw);
+      aspect-ratio: 16 / 9;
+      margin: 20px auto 16px;
+      background: #000;
+      border: none;                /* no frame around iframe */
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    /* Fill the container */
+    #viewer iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none !important;
+      outline: none;
+      box-shadow: none;
+    }
+    /* Hairline border on HiDPI for extra crispness */
+    
+      /* Full-width table styles */
+    .table-wrap { width: min(1200px, 95vw); margin: 16px auto 48px; }
+    .naming-table { width: 100%; border-collapse: collapse; font-size: 16px; }
+    .naming-table thead th { background: #f6f7f9; color: #111; text-align: left; padding: 8px 16px; border-bottom: 1px solid #e6e8eb; font-weight: 600; }
+    .naming-table tbody td { padding: 9.6px 16px; border-bottom: 1px solid #e6e8eb; }
+    .naming-table td.cost, .naming-table td.avail { text-align: right; white-space: nowrap; }
+    .naming-table tbody tr:nth-child(even) { background: transparent; }
+      .naming-table tbody tr:hover { background: #f9fafb; }
+      /* Section titles */
+    .section { width: min(1200px, 95vw); margin: 16px auto 8px; }
+   .page-title {
+  text-align: left;
+  font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  font-weight: 600;                 /* вместо 800 — мягче */
+  line-height: 1.2;
+  letter-spacing: 0;
+  margin: 6px 0 10px;
+  font-size: clamp(22px, 3.4vw, 34px);
+  position: relative;
+  animation: fadeUp .7s ease both;
+  color: #0f172a;                   /* спокойный тёмный */
+}
+
+.page-title:before {
+  content: none;                    /* убираем боковую полоску */
+}
+
+.page-title .accent {
+  color: #0f172a;                   /* обычный тёмный текст */
+  background: none;
+  -webkit-text-fill-color: initial;
+}
+
+.page-title .muted {
+  color: #475569;                   /* приглушённый серый */
+  font-weight: 500;
+}
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(10px);} to { opacity: 1; transform: none; } }
+    .table-title { text-align: left; font-family: 'Inter', system-ui; font-weight: 700; margin: 12px auto 8px; width: min(1200px,95vw); animation: fadeUp .7s ease .1s both; }
+    .naming-table tbody tr { opacity: 0; transform: translateY(8px); animation: fadeUp .5s ease forwards; }
+    .naming-table tbody tr:nth-child(1)  { animation-delay: .05s; }
+    .naming-table tbody tr:nth-child(2)  { animation-delay: .10s; }
+    .naming-table tbody tr:nth-child(3)  { animation-delay: .15s; }
+    .naming-table tbody tr:nth-child(4)  { animation-delay: .20s; }
+    .naming-table tbody tr:nth-child(5)  { animation-delay: .25s; }
+    .naming-table tbody tr:nth-child(6)  { animation-delay: .30s; }
+    .naming-table tbody tr:nth-child(7)  { animation-delay: .35s; }
+    .naming-table tbody tr:nth-child(8)  { animation-delay: .40s; }
+    .naming-table tbody tr:nth-child(9)  { animation-delay: .45s; }
+    .naming-table tbody tr:nth-child(10) { animation-delay: .50s; }
+    .naming-table tbody tr:nth-child(11) { animation-delay: .55s; }
+    .naming-table tbody tr:nth-child(12) { animation-delay: .60s; }
+    .naming-table tbody tr:nth-child(13) { animation-delay: .65s; }
+    .naming-table tbody tr:nth-child(14) { animation-delay: .70s; }
+    .naming-table tbody tr:nth-child(15) { animation-delay: .75s; }
+    @media (prefers-reduced-motion: reduce) {
+      .page-title, .table-title, .naming-table tbody tr { animation: none !important; opacity: 1; transform: none; }
+    }
+      /* ——— WORKFLOW BLOCK ——— */
+    .wf { width: min(1200px, 95vw); margin: 24px auto 40px; }
+    .wf-title { text-align: left; font-family: 'Poppins', 'Inter', system-ui; font-weight: 800; margin: 6px 0 12px; font-size: clamp(18px, 2.6vw, 24px); letter-spacing: .2px; animation: fadeUp .7s ease both; }
+    .wf-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; align-items: start; }
+    .wf-video { position: relative; width: 100%; background: #fff; border-radius: 12px 0 0 12px; overflow: hidden; aspect-ratio: 16 / 9; height: auto; }
+    .wf-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; outline: none; pointer-events: none; }
+    .wf-text { display: flex; flex-direction: column; justify-content: flex-start; gap: 10px; animation: fadeUp .7s ease .1s both; background: none; color: #555; padding: 12px 16px; border-radius: 0 12px 12px 0; }
+    .wf-h { font-family: 'Poppins', 'Inter', system-ui; font-weight: 800; margin: 0 0 6px; font-size: clamp(18px, 2.4vw, 22px); color: #2b2b2b; opacity: 0; transform: translateY(8px); animation: fadeUp .6s ease .05s forwards; }
+    .wf-lead { margin: 0 0 8px; color: #555; opacity: 0; transform: translateY(8px); animation: fadeUp .6s ease .1s forwards; }
+    .wf-steps { list-style: none; padding: 0; margin: 8px 0 0; }
+    .wf-steps li { position: relative; padding: 8px 0 8px 14px; border-bottom: 1px solid #eee; opacity: 0; transform: translateY(8px); animation: fadeUp .5s ease forwards; }
+    .wf-steps li::before { content: ""; position: absolute; left: 0; top: 12px; width: 6px; height: 6px; border-radius: 50%; background: #4b5cff; opacity: .6; }
+    .wf-steps li:nth-child(1) { animation-delay: .05s; }
+    .wf-steps li:nth-child(2) { animation-delay: .10s; }
+    .wf-steps li:nth-child(3) { animation-delay: .15s; }
+    .wf-steps li:nth-child(4) { animation-delay: .20s; }
+    .wf-steps li:nth-child(5) { animation-delay: .25s; }
+    @media (max-width: 900px) { .wf-grid { grid-template-columns: 1fr; gap: 12px; } .wf-video { border-radius: 12px; } .wf-text { border-radius: 12px; } }
+      /* Workflow content extras */
+    .wf-sub { font-family: 'Inter', system-ui; font-weight: 700; margin: 10px 0 6px; color: #333; }
+    .wf-list { list-style: none; padding: 0; margin: 0 0 6px; }
+    .wf-list li { position: relative; padding: 6px 0 6px 14px; border-bottom: 1px solid #e6e8eb; opacity: 0; transform: translateY(6px); animation: fadeUp .5s ease forwards; }
+    .wf-list li::before { content: ""; position: absolute; left: 0; top: 13px; width: 6px; height: 6px; border-radius: 50%; background: #9aa5b1; }
+    .wf-list li:nth-child(1) { animation-delay: .05s; }
+    .wf-list li:nth-child(2) { animation-delay: .10s; }
+    .wf-list li:nth-child(3) { animation-delay: .15s; }
+    .wf-list li:nth-child(4) { animation-delay: .20s; }
+    .wf-list li:nth-child(5) { animation-delay: .25s; }
+    .wf-list li:nth-child(6) { animation-delay: .30s; }
+    .wf-list li:nth-child(7) { animation-delay: .35s; }
+    .wf-list li:nth-child(8) { animation-delay: .40s; }
+    .wf-list li:nth-child(9) { animation-delay: .45s; }
+    .wf-list li:nth-child(10){ animation-delay: .50s; }
+      /* White preload/letterbox mask */
+    .wf-mask { display: none !important; }
+      /* White mask to hide black letterbox while loading */
+    .wf-mask { display: none !important; }
+      /* Chessboard (alternating) layout for workflow blocks */
+    .wf-grid.alt { grid-template-columns: 1fr 1fr; }
+    .wf-grid.alt .wf-video { order: 2; border-radius: 0 12px 12px 0; }
+    .wf-grid.alt .wf-text  { order: 1; border-radius: 12px 0 0 12px; }
+    @media (max-width: 900px) {
+      .wf-grid.alt { grid-template-columns: 1fr; gap: 12px; }
+      .wf-grid.alt .wf-video, .wf-grid.alt .wf-text { order: initial; border-radius: 12px; }
+    }
+      /* —— Stage Four: full‑width video + text below —— */
+    .wf-full { width: min(1200px, 95vw); margin: 24px auto 40px; }
+    .wf-video.full { border-radius: 12px; background: #fff; aspect-ratio: 16 / 9; position: relative; overflow: hidden; }
+    .wf-video.full iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; outline: none; pointer-events: none; }
+    .wf-text.wide { background: none; color: #555; padding: 12px 2px 0; border-radius: 12px; }
+    .wf-text.wide .wf-h { color: #2b2b2b; }
+      /* —— Stage Six: full‑bleed (full screen) video + text below —— */
+    .wf-bleed { width: 100vw; margin: 0 calc(50% - 50vw); }
+    .hero-video { position: relative; height: 100vh; background: #fff; overflow: hidden; }
+    .hero-video iframe { position: absolute; top: 50%; left: 50%; border: 0; outline: none; pointer-events: none; transform: translate(-50%, -50%); }
+    /* Cover rules for 16:9: choose dimension by aspect ratio to fill the viewport */
+    @media (min-aspect-ratio: 16/9) { .hero-video iframe { width: 100vw; height: 56.25vw; } }
+    @media (max-aspect-ratio: 16/9) { .hero-video iframe { width: 177.78vh; height: 100vh; } }
+
+    .naming-table tbody tr[data-pano] { cursor: pointer; }
+.naming-table tbody tr.active { background: #eef2ff; }
+
+/* Мини-плеер превью */
+.hover-preview {
+  position: fixed;                /* якорим к окну, удобнее позиционировать */
+  width: 280px;                   /* можно менять, держим 16:9 */
+  aspect-ratio: 16 / 9;
+  background: #000;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, .25);
+  opacity: 0;
+  transform: translateY(6px) scale(.98);
+  transition: opacity .15s ease, transform .15s ease;
+  z-index: 9999;
+  pointer-events: none;           /* не перехватывает курсор, чтобы не мигало */
+}
+.hover-preview.show {
+  opacity: 1;
+  transform: none;
+}
+.hover-preview iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  outline: none;
+}
+
+
+
+/* Панель слева оставляем как есть */
+.viewer-ui{
+  position:absolute; top:12px; left:12px; z-index:2;
+  background:rgba(255, 255, 255, 0);
+  opacity: 0.5;
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  border-radius:10px; padding:8px; pointer-events:auto;
+}
+
+/* Селект: белый фон + тёмный текст, чтобы всё читалось */
+#panoSelect{
+  appearance:none;
+  font:500 14px/1.2 system-ui,-apple-system,Segoe UI,Roboto,Arial;
+  color:#111;                            /* тёмный текст */
+  background:rgba(255,255,255,.96);      /* светлый фон */
+  border:1px solid #d1d5db;              /* светлая рамка */
+  border-radius:8px;
+  padding:8px 32px 8px 10px;
+  min-width:240px; max-width:62vw; outline:none;
+  box-shadow:0 2px 10px rgba(0,0,0,.12);
+}
+#panoSelect:focus{ box-shadow:0 0 0 2px rgba(99,102,241,.35); }
+
+/* Короткая подсветка ошибки при выборе пункта без ссылки */
+#panoSelect.invalid{
+  border-color:#ef4444 !important;
+  box-shadow:0 0 0 2px rgba(239,68,68,.35) !important;
+}
+
+
+
+/* Хедер */
+
+
+
+
+/* Внутренняя обёртка: чуть паддинга справа,
+   чтобы меню не липло к самому краю */
+.nav-inner{
+  width:min(1200px,95vw);
+  margin:0 auto;
+  display:flex; align-items:center; gap:16px;
+  padding:30px 12px;                 /* ← добавили правый (и левый) отступ */
+}
+
+/* Лого слева — как было */
+.brand img{ display:block; height:32px; width:auto; }
+
+/* МЕНЮ справа */
+.nav{
+  margin-left:auto;                   /* ← уводим блок меню вправо */
+  display:flex; gap:12px;             /* ← расстояние между кнопками */
+  justify-content:flex-end;           /* ← прижимаем к правому краю контейнера */
+  flex-wrap:wrap;
+}
+
+.nav-link{
+  color:#e5e7eb; text-decoration:none;
+  padding:8px 12px; border-radius:8px;
+}
+.nav-link:hover,.nav-link.active{ background:#257cff; color:#fff }
+
+@media (max-width:640px){
+  .brand img{ height:26px; }
+  .nav-link{ padding:6px 10px; font-size:14px; }
+}
+
+.nav-link.caps{ text-transform:uppercase; letter-spacing:.02em; }
+
+
+
+/* === Philanthropy Hero === */
+/* === Hero adapter: делаем hero-phil строгим, как таблицы === */
+
+/* 1) Бейдж на всю ширину (как «инпут» сверху слева) */
+.hero-phil.badge-wide .hero-badge{
+  display:block;
+  width:100%;
+  padding:8px 12px;
+  background:#f8fafc;
+  border:1px solid #e6e8eb;
+  color:#111;
+  border-radius:6px;
+}
+
+/* 2) Акцент под шапку (#0077ff/#257cff) */
+.hero-phil.is-brand{ --accent:#257cff; --ring:rgba(37,124,255,.28); }
+
+/* 3) Кнопки — матовый синий и мягкий hover */
+.hero-phil .btn-primary{
+  background:var(--accent);
+  border-color:var(--accent);
+  color:#fff;
+  box-shadow:0 1px 0 rgba(0,0,0,.03), 0 8px 16px rgba(2,6,23,.12);
+}
+.hero-phil .btn-primary:hover{ filter:brightness(.96); }
+.hero-phil .btn-ghost{ background:#fff; }
+.hero-phil .btn-ghost:hover{ background:#f8fafc; }
+
+/* 4) Чуть компактнее вертикальные отступы */
+.hero-phil.compact{ padding:12px 14px; }
+.hero-phil.compact .hero-lead{ margin-top:6px; }
+.hero-phil.compact .hero-stats{ margin-top:8px; gap:8px; }
+
+/* 5) На широких — баланс колонок как в скрине */
+@media (min-width: 980px){
+  .hero-phil{ grid-template-columns: 1.05fr .95fr; }
+}
+
+
+
+
+html { scroll-behavior: smooth; }
+/* чтобы заголовок не прятался под липкий header */
+#naming { scroll-margin-top: 88px; }  /* подгони число под реальную высоту шапки */
+@media (max-width: 640px){
+  #naming { scroll-margin-top: 72px; }
+}
+
+/* Funding snapshot (чипы, как KPI) */
+.hero-funding{
+  display:flex; flex-wrap:wrap; gap:10px; margin:10px 0 0; padding:0; list-style:none;
+}
+.hero-funding li{
+  display:flex; gap:8px; align-items:baseline;
+  padding:6px 10px; border:1px solid var(--border); border-radius:8px; background:#fff;
+}
+.hero-funding .k{ font:700 12px/1.1 Inter, system-ui; color:#0f172a; text-transform:uppercase; letter-spacing:.04em; }
+.hero-funding .v{ font:600 12px/1.1 Inter, system-ui; color:#475569; }
+
+
+/* ——— Hero polish ——— */
+.hero-phil.luxe{                     /* мягкий «премиум» каркас */
+  position:relative; border-radius:12px;
+  border:1px solid var(--border); background:#fff;
+  padding:14px 16px; display:grid; gap:16px;
+}
+
+
+/* заголовок — лёгкий градиент только на 2-й строке */
+.hero-phil .hero-line.gradient{
+  background:linear-gradient(90deg,var(--accent) 0%,#9333ea 100%);
+  -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+}
+
+/* мини-мета под заголовком */
+.hero-meta{ display:flex; flex-wrap:wrap; gap:8px; align-items:center;
+  color:#475569; font:600 12px/1.2 Inter, system-ui;
+}
+.hero-meta .dot{ width:4px; height:4px; border-radius:50%; background:#cbd5e1; }
+
+/* KPI-чипы в виде карточек */
+.hero-stats.card{
+  display:grid; grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:10px; margin-top:8px; padding:0; list-style:none;
+}
+.hero-stats.card li{
+  display:flex; align-items:center; gap:10px;
+  padding:10px 12px; background:#fff; border:1px solid var(--border);
+  border-radius:10px; box-shadow:0 1px 0 rgba(0,0,0,.03);
+}
+.hero-stats.card li strong{ font:800 18px/1 Inter; color:#0f172a; }
+.hero-stats.card li span{ font:600 12px/1.2 Inter; color:#475569; }
+
+/* компактные кнопки */
+.hero-ctas .btn{ height:38px; padding:0 14px; border-radius:10px; }
+.hero-ctas .btn-outline{ background:transparent; border:1px solid var(--border); color:#0f172a; }
+.hero-ctas .btn-outline:hover{ background:#f8fafc; }
+
+@media (max-width:900px){ .hero-stats.card{ grid-template-columns:1fr 1fr; } }
+
+
+/* Двухколоночный hero: mobile-first */
+.hero-phil{
+  display:grid;
+  grid-template-columns: 1fr;      /* мобильная одна колонка */
+  align-items:start;
+  gap:18px;
+}
+@media (min-width: 980px){
+  .hero-phil{ grid-template-columns: 360px 1fr; } /* слева бейдж, справа контент */
+}
+
+
+/* Явно укажем области */
+.hero-left{ align-self:start; }
+.hero-right{ display:flex; flex-direction:column; gap:12px; }
+
+/* Бейдж – компактный, не растягивается по высоте */
+.hero-badge{
+  display:block; width:100%; height:auto; 
+  padding:10px 12px; background:#f8fafc; color:#111;
+  border:1px solid #e6e8eb; border-radius:10px;
+  font:600 13px/1.2 Inter, system-ui; letter-spacing:.02em;
+}
+
+/* Чуть плотнее кпи-чипы */
+.hero-stats.card{ margin-top:4px; }
+
+
+
+/* лёгкий shimmer у второй строки заголовка */
+.hero-phil .hero-line.gradient{
+  background:linear-gradient(90deg,var(--accent) 0%,#9333ea 50%,#06b6d4 100%);
+  -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+  background-size:200% 100%;
+  animation:heroShimmer 6s ease-in-out infinite;
+}
+@keyframes heroShimmer{ 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+
+/* мягкий «ореол» за правым столбцом */
+.hero-phil.luxe::after{
+  content:"";
+  position:absolute; inset: -4px -4px -4px 340px;  /* не заезжает под левую рейку */
+  pointer-events:none; z-index:0;
+  background:radial-gradient(600px 260px at 60% 15%, rgba(37,124,255,.10), transparent 60%);
+}
+.hero-right{ position:relative; z-index:1; } /* поверх ореола */
+
+
+.hero-ctas .btn{
+  position:relative; border:1px solid transparent; transition:transform .06s ease;
+}
+.hero-ctas .btn:active{ transform:translateY(1px); }
+.hero-ctas .btn-primary:focus-visible{
+  box-shadow:0 0 0 6px var(--ring);
+}
+
+
+/* HERO: full-width, no left badge */
+.hero-phil .hero-left,
+.hero-phil .hero-badge{
+  display:none !important;           /* скрыть колонку и сам бейдж */
+}
+
+.hero-phil{
+  grid-template-columns: 1fr !important; /* одна колонка на всю ширину */
+}
+
+.hero-phil .hero-right{
+  grid-column: 1 / -1;               /* контент растягивается на весь hero */
+  margin: 0; padding-left: 0;        /* без «откушенного» левого поля */
+}
+
+/* если где-то остался зазор — подстрахуемся */
+.section > .hero-phil{ width:100%; }
+
+/* (опционально) если захочешь убрать цветную рейку слева — раскомментируй: */
+/* .hero-phil.luxe::before{ display:none; } */
+
+/* если убрали .hero-left из разметки */
+.hero-phil{ grid-template-columns: 1fr; }
+
+
+/* делаем --ang анимируемым */
+@property --ang {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+/* ключевые кадры: 1 полный оборот */
+@keyframes nav-ring-spin {
+  to { --ang: 1turn; }
+}
+
+
+
+
+
+/* NAV: бегущая обводка при hover/focus */
+.nav-link{
+  position: relative;
+  border-radius: 8px;       /* держим как у тебя */
+  isolation: isolate;       /* псевдоэлемент над фоном, но клики проходят */
+}
+
+/* рисуем тонкое кольцо поверх кнопки и крутим его конусным градиентом */
+.nav-link::before{
+  --ring-w: 2px;            /* толщина обводки */
+
+  content: "";
+  position: absolute;
+  inset: calc(-1 * var(--ring-w));      /* чтобы кольцо не «съедало» padding */
+  border-radius: inherit;
+  padding: var(--ring-w);
+
+  background: conic-gradient(from var(--ang,0deg),
+             #dbeafc, #eae1ff, #d2edf1, #ffffff);
+
+  /* показываем только «кольцо», а центр – прозрачный */
+  -webkit-mask: linear-gradient(#000 0 0) content-box,
+                 linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .2s ease;
+  animation: nav-ring-spin  2.5s linear infinite paused;
+}
+
+.nav-link:hover::before,
+.nav-link:focus-visible::before{
+  opacity: .9;
+  animation-play-state: running;
+}
+
+@keyframes nav-ring-spin{
+  to { --ang: 360deg; }
+}
+
+/* уважение к людям с ограничением анимаций: просто мягкая подсветка */
+@media (prefers-reduced-motion: reduce){
+  .nav-link::before{ animation: none; opacity: 0; }
+  .nav-link:hover::before,
+  .nav-link:focus-visible::before{ opacity: .6; }
+}
+
+/* Фолбэк для очень старых браузеров: тонкая статичная рамка при hover */
+@supports not ((mask-composite: exclude) or (-webkit-mask-composite: xor)){
+  .nav-link:hover{ outline: 2px solid #8b5cf6; outline-offset: 0; }
+}
+
+/* только для кнопок в hero */
+.hero-ctas .btn,
+.hero-ctas .btn:link,
+.hero-ctas .btn:visited,
+.hero-ctas .btn:hover,
+.hero-ctas .btn:focus,
+.hero-ctas .btn:active {
+  text-decoration: none;     /* убрать underline */
+  color: #fff;               /* на всякий случай зафиксируем белый */
+}
+
+/* чуть аккуратнее выравнивание и форма */
+.hero-ctas .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 38px;
+  padding: 0 16px;
+  border-radius: 9999px;     /* идеально круглые края (можно оставить 10px, если так нужно) */
+  line-height: 1;            /* без «подпрыгивания» текста */
+}
+
+
+
+
+/* 1) Никогда не даём странице разъезжаться по оси X */
+html, body { overflow-x: hidden; }
+
+/* 2) Клипнем декоративный ореол внутри hero, чтобы он не создавал скролл */
+.hero-phil { overflow: hidden; }
+
+/* 3) Уточним поведение сеток на узких экранах — карточки могут сжиматься */
+.hero-stats.card li,
+.hero-funding li { min-width: 0; }      /* разрешаем сжатие */
+.hero-stats.card li span { word-break: break-word; }
+
+/* 4) Совсем узкие экраны — в одну колонку, гарантированно без переполнения */
+@media (max-width: 420px){
+  .hero-stats.card { grid-template-columns: 1fr; }
+}
+
+/* 5) «Бегущая» обводка у нав-ссылок не должна влиять на макет */
+.nav-link { contain: paint; }           /* изолируем перерисовку псевдоэлемента */
+
+
+/* не даём странице расползаться по X */
+html, body { overflow-x: hidden; }
+
+/* ширина 95vw С УЧЁТОМ padding */
+.nav-inner,
+.section,
+.table-wrap,
+#viewer,
+.wf,
+.wf-full {
+  box-sizing: border-box;
+}
+
+/* таблицы: не выталкивать контейнер и красиво переносить текст */
+.table-wrap { overflow-x: hidden; }           /* или auto, если хочешь горизонтальный скролл только у таблицы */
+.naming-table { width: 100%; table-layout: auto; }
+.naming-table th, .naming-table td { min-width: 0; }
+.naming-table .desc { word-break: break-word; }
+
+/* ореол hero клипим внутри, чтобы не создавать скролл */
+.hero-phil { overflow: hidden; }
+@media (max-width: 480px){
+  .hero-phil.luxe::after{ inset: -2px -2px -2px 120px; }
+}
+
+/* общее: нормальная переносимость текста и выравнивание */
+.naming-table th, .naming-table td { vertical-align: top; }
+.naming-table .desc { white-space: normal; word-break: break-word; overflow-wrap: anywhere; }
+
+/* на мобиле отключаем fade-анимацию строк, чтобы текст не исчезал */
+@media (max-width:700px){
+  .naming-table tbody tr{
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+}
+
+/* Мобильная раскладка «карточкой» только для второй таблицы */
+@media (max-width:700px){
+  .naming-table.stack thead { display: none; }   /* прячем шапку */
+
+  .naming-table.stack tbody tr{
+    display: grid;
+    grid-template-columns: 1fr auto auto;        /* Space | Cost | # */
+    grid-template-areas:
+      "space cost avail"
+      "desc  desc desc";                          /* описание — на всю ширину */
+    gap: 8px 10px;
+    padding: 12px 10px;
+    border-bottom: 1px solid #e6e8eb;
+  }
+
+  .naming-table.stack td{ padding: 0; border: 0; }
+  .naming-table.stack td:nth-child(1){ grid-area: space; font-weight: 600; }
+  .naming-table.stack td:nth-child(2){ grid-area: cost; text-align: right; white-space: nowrap; }
+  .naming-table.stack td:nth-child(3){ grid-area: avail; text-align: right; white-space: nowrap; }
+  .naming-table.stack td:nth-child(4){ grid-area: desc;  color:#555; line-height: 1.35; }
+}
+
+
+/* ==== HEADER FX PACK ==== */
+:root{
+  --hdr-accent:#257cff;
+  --hdr-bg: rgba(0,119,255,.78);
+  --hdr-blur: 10px;
+  --hdr-speed: .25s;                /* базовая скорость анимаций */
+}
+
+/* сам header: стекло + плавные переходы */
+.site-header{
+  position: sticky; top:0; z-index:50;
+  background: var(--hdr-bg);
+  backdrop-filter: blur(var(--hdr-blur));
+  -webkit-backdrop-filter: blur(var(--hdr-blur));
+  box-shadow: 0 10px 30px rgba(2,6,23,.10);
+  transform: translateZ(0);
+  transition:
+    background var(--hdr-speed) ease,
+    transform .22s ease;            /* для автоскрытия */
+}
+
+/* компактный режим при скролле */
+.site-header.is-compact .nav-inner{ padding: 10px 12px; }
+.site-header .nav-inner{ transition: padding var(--hdr-speed) ease; }
+.site-header.is-compact .brand img{ height: 24px; transition: height var(--hdr-speed); }
+
+/* авто-скрытие при скролле вниз */
+.site-header.is-hidden{ transform: translateY(-100%); }
+
+/* «бегущая» тонкая линия снизу */
+.site-header::after{
+  content:"";
+  position:absolute; left:0; right:0; bottom:0; height:2px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    var(--hdr-accent) 20%,
+    #9333ea 50%,
+    #06b6d4 80%,
+    transparent 100%);
+  background-size: 200% 100%;
+  animation: hdr-shimmer 6s linear infinite;
+  opacity:.7; pointer-events:none;
+}
+@keyframes hdr-shimmer{ to{ background-position:200% 0; } }
+
+/* прогресс-бар прокрутки (добавится скриптом) */
+.site-header .scrollbar{
+  position:absolute; left:0; bottom:0; height:2px; width:100%;
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+  background: linear-gradient(90deg, var(--hdr-accent), #9333ea);
+  pointer-events:none; mix-blend-mode: soft-light;
+}
+
+/* маркер, который «ездит» по пунктам меню */
+.nav{ position:relative; }
+.nav-marker{
+  position:absolute; top:50%; transform: translateY(-50%);
+  height:34px; border-radius:8px;
+  border:1px solid rgba(255,255,255,.35);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.15);
+  transition: left .25s ease, width .25s ease, opacity .2s ease;
+  opacity:0; pointer-events:none;
+}
+.nav:hover .nav-marker{ opacity:1; }
+
+/* лёгкий hover у ссылок + твоя «бегущая обводка» остаётся */
+.nav-link{ transition: background .15s ease, transform .06s ease; }
+.nav-link:active{ transform: translateY(1px); }
+
+/* без лишних движух для тех, кто не любит анимации */
+@media (prefers-reduced-motion: reduce){
+  .site-header::after, .site-header .scrollbar, .nav-marker{ animation:none; transition:none; }
+}
+
+
+
+/* глобальные ручки */
+.site-header{
+  --ring-speed: 1.6s;        /* скорость «бегущей» обводки у пунктов меню */
+  --hdr-line-speed: 5s;      /* скорость бегущей линии снизу хедера */
+  --hdr-speed: .25s;         /* скорость сжатия/раскрытия хедера */
+}
+
+/* привязываем переменные к анимациям */
+.nav-link::before{
+  animation: nav-ring-spin var(--ring-speed,2.5s) linear infinite paused;
+}
+.site-header::after{
+  animation: hdr-shimmer var(--hdr-line-speed,6s) linear infinite;
+}
+@media (max-width: 700px){
+  .nav-marker{ display:none; }
+}
+@media (max-width:700px){
+  .naming-table.stack tbody tr{ gap:6px 8px; padding:10px; }
+  .naming-table.stack .desc{ font-size:14px; line-height:1.35; }
+  .naming-table.stack .desc br{ display:none; }  /* режем лишние разрывы */
+}
+
+.nav-link:focus-visible{
+  outline: 2px solid rgba(255,255,255,.9);
+  outline-offset: 2px;
+}
+
+.is-hidden{ display:none !important; }
+
+
+
+/* Keep buttons in a row with spacing */
+.hero-ctas{ display:flex; gap:10px; flex-wrap:wrap; }
+
+/* Pill shape */
+.btn-pill{ border-radius:9999px !important; }
+
+/* Orange button */
+.hero-ctas .btn.btn-orange{
+  background:#ff7a1a !important;
+  border-color:#ff7a1a !important;
+  color:#fff !important;
+  box-shadow:0 8px 24px rgba(255,122,26,.25) !important;
+}
+.hero-ctas .btn.btn-orange:hover{ filter:brightness(.96); }
+.hero-ctas .btn.btn-orange:focus-visible{
+  outline:none;
+  box-shadow:0 0 0 6px rgba(255,122,26,.28) !important;
+}
+
+
+
+
+  </style>
+
+
+
+</head>
+<body>
+  <header class="site-header">
+  <div class="nav-inner">
+    <!-- ЛОГО слева -->
+    <a class="brand" href="index.html" title="Home">
+      <img src="img/lg.png" alt="iShare logo">
+      <!-- если нужен ретина-вариант:
+      <img src="img/lg.png" srcset="img/lg.png 1x, img/lg@2x.png 2x" alt="iShare logo">
+      -->
+    </a>
+
+    <!-- КНОПКИ справа -->
+   <nav class="nav">
+  <span class="nav-link active">Queensway Carleton Hospital</span>
+</nav>
+
+
+
+  </div>
+</header>
+
+
+
+  <div class="section">
+ <header class="hero-phil is-brand compact luxe" role="banner" aria-label="Philanthropy hero">
+  <div class="hero-right">
+    <h1 class="hero-title">
+  <span class="hero-line">Queensway Carleton Hospital</span>
+  <span class="hero-line gradient">Inpatient Care Pavilion</span>
+</h1>
+
+<div class="hero-meta" aria-label="Project meta">
+  <span>Part 4 Expansion</span><span class="dot"></span><span>Levels 5–7</span>
+</div>
+
+
+    <p class="hero-lead">
+      Your leadership gift helps expand compassionate, world-class care for our growing community — today and for generations to come.
+    </p>
+
+    <div class="hero-ctas">
+  <a href="#naming" class="btn btn-primary">Explore Opportunities</a>
+
+  <a href="https://example.com/donation-guide"
+     class="btn btn-orange btn-pill"
+     target="_blank" rel="noopener"
+     title="discr hw t make effficint dnatin_">
+    Discover How To Make Efficient Donation
+  </a>
+</div>
+
+
+
+    <ul class="hero-stats card" aria-label="Impact highlights">
+      <li><strong>2.5×</strong><span>ED Expansion</span></li>
+      <li><strong>+90</strong><span>New Inpatient Beds</span></li>
+      <li><strong>80K+</strong><span>ED Visits / Year</span></li>
+      <li><strong>500K</strong><span>Residents Served</span></li>
+      <li><strong>50%</strong><span>of Ottawa Population</span></li>
+      <li><strong>$20M</strong><span>Emergency Dept.</span></li>
+    </ul>
+
+    <ul class="hero-funding" aria-label="Funding snapshot">
+      <li><span class="k">Operations</span><span class="v">Government 100%</span></li>
+      <li><span class="k">Capital Expansion</span><span class="v">Govt 90% · Foundation 10%</span></li>
+      <li><span class="k">Equipment</span><span class="v">Foundation 100% (Govt 0%)</span></li>
+    </ul>
+  </div>
+</header>
+
+
+</div>
+
+
+
+
+
+
+  <div id="viewer">
+  <iframe id="panoFrame" src="https://app.seekbeak.com/v/A0zrX6AMqvQ" allowfullscreen></iframe>
+</div>
+
+  <div class="section"><h2 class="table-title" id="naming">Naming Opportunities</h2></div>
+
+  <div class="table-wrap">
+    <table class="naming-table">
+      <thead>
+        <tr>
+          <th>Space</th>
+          <th>Cost</th>
+          <th># Available</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr data-pano="https://app.seekbeak.com/v/A0zrX6AMqvQ" data-yt="zF-baikA_dw">
+    <td>Emergency</td><td class="cost">$20,000,000</td><td class="avail">1</td>
+  </tr>
+  <tr data-pano="https://app.seekbeak.com/v/lVjK3DDxjBb" data-yt="https://youtu.be/O0hyodrVwE8">
+    <td>Inpatient Bed Floors</td><td class="cost">$5,000,000</td><td class="avail">3</td>
+  </tr>
+        <tr data-pano="https://app.seekbeak.com/v/A0zrX8XmqvQ" data-yt="">
+  <td>Inpatient Bed Floor Wings</td><td class="cost">$1,000,000</td><td class="avail">6</td>
+</tr>
+
+        <tr data-pano="https://app.seekbeak.com/v/A0zrX6GmqvQ" data-yt="">
+  <td>Reception Centre</td><td class="cost">$500,000</td><td class="avail">3</td>
+</tr>
+
+        <tr data-pano="https://app.seekbeak.com/v/5VjYMx75job" data-yt="">
+  <td>Dining/ Activity Room</td><td class="cost">$250,000</td><td class="avail">3</td>
+</tr>
+
+        <tr data-pano="https://app.seekbeak.com/v/lVjK3DlLjBb" data-yt="">
+  <td>Multi Use Lounge/ Activity Room</td><td class="cost">$250,000</td><td class="avail">3</td>
+</tr>
+
+        <tr data-pano="https://app.seekbeak.com/v/40zdKe5Y1DR" data-yt="">
+  <td>Nursing Stations</td><td class="cost">$250,000</td><td class="avail">3</td>
+</tr>
+
+       <tr data-pano="https://app.seekbeak.com/v/rNj7D9mGqJd" data-yt="">
+  <td>Report Meeting Room</td><td class="cost">$100,000</td><td class="avail">3</td>
+</tr>
+
+        <tr data-pano="https://app.seekbeak.com/v/7MqRlb5PzdW" data-yt="">
+  <td>Staff Facility / Lounge</td><td class="cost">$100,000</td><td class="avail">3</td>
+</tr>
+
+       <tr data-pano="https://app.seekbeak.com/v/EB15JgM5zgV" data-yt="">
+  <td>Allied Health Team Room</td><td class="cost">$100,000</td><td class="avail">3</td>
+</tr>
+
+       <tr data-pano="https://app.seekbeak.com/v/vPq48e3JqAw" data-yt="">
+  <td>Quiet/ Consultant</td><td class="cost">$100,000</td><td class="avail">3</td>
+</tr>
+
+        <tr data-pano="https://app.seekbeak.com/v/531BpwmrjBL" data-yt="">
+  <td>Galley/ Servery</td><td class="cost">$50,000</td><td class="avail">3</td>
+</tr>
+
+        <tr data-pano="https://app.seekbeak.com/v/Ap1PNXRmjXo" data-yt="">
+  <td>Inpatient Bed Rooms</td><td class="cost">$25,000</td><td class="avail">90</td>
+</tr>
+
+        <tr data-pano="https://app.seekbeak.com/v/7MqRlb5PzdW" data-yt="">
+  <td>Office Shared Care Facilitator / SDU Nurse</td><td class="cost">$25,000</td><td class="avail">18</td>
+</tr>
+
+      </tbody>
+    </table>
+  </div>
+  <!-- ===== Your detailed table under the first one ===== -->
+<div class="section"><h2 class="table-title">GENERAL HOSPITAL — PART 4 EXPANSION</h2></div>
+
+<div class="table-wrap">
+  <table class="naming-table stack">
+
+    <thead>
+      <tr>
+        <th>Space</th>
+        <th>Cost</th>
+        <th># Available</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Emergency</td>
+        <td class="cost">$20,000,000</td>
+        <td class="avail">1</td>
+        <td class="desc"></td>
+      </tr>
+      <tr data-pano="https://app.seekbeak.com/v/5VjYp4LQzob" data-yt="">
+  <td>Walk - In Entrance</td>
+  <td class="cost">$1,000,000</td>
+  <td class="avail">1</td>
+  <td class="desc">
+    The Emergency Department Entrance is the first place patients and families see when they walk into General Hospital’s Emergency Department—often during some of life’s most difficult moments.<br><br>
+    It’s a busy, essential space that helps people find their way and sets the tone for the care ahead.<br><br>
+    Be a part of the first thing people see when they come through our doors.
+  </td>
+</tr>
+
+      <tr data-pano="https://app.seekbeak.com/v/35zeLKep1An" data-yt="">
+  <td>Main Waiting Room</td>
+  <td class="cost">$1,000,000</td>
+  <td class="avail">1</td>
+  <td class="desc">
+    The Main Waiting Room is a busy, high-traffic area where patients and families wait for care—often during stressful and uncertain times.<br><br>
+    As part of ongoing emergency services improvements, this space accommodates more patients and families from the growing community, providing seating and essential amenities during a challenging part of their care journey.<br><br>
+    Be a part of a space that supports patients and families throughout their care experience.
+  </td>
+</tr>
+
+      <tr data-pano="https://app.seekbeak.com/v/R81ydJgGqAd" data-yt="">
+  <td>CT/ Xray and Ultrasound Area</td>
+  <td class="cost">$1,000,000</td>
+  <td class="avail">1</td>
+  <td class="desc">
+    The Imaging Area is a vital, fast-paced space where patients undergo important diagnostic tests to help guide their care.<br><br>
+    As part of our commitment to advanced and timely diagnostics, this area houses CT, X-ray, and Ultrasound equipment to support a wide range of imaging needs, providing accurate results in a comfortable setting.<br><br>
+    Be a part of a space that plays a key role in helping patients and care teams understand health conditions and plan the next steps in treatment.
+  </td>
+</tr>
+
+      <tr data-pano="https://app.seekbeak.com/v/A0zrX6GmqvQ" data-yt="">
+  <td>Comm Centres</td>
+  <td class="cost">$250,000</td>
+  <td class="avail">4</td>
+  <td class="desc">
+    The Communications Centre is a busy hub where information flows quickly to support patient care and hospital operations.<br><br>
+    As part of our focus on clear, timely communication, this space connects care teams, departments, and services to ensure everyone stays informed and coordinated.<br><br>
+    Be a part of a space that keeps the entire hospital network working smoothly for patients and their families.
+  </td>
+</tr>
+
+      <tr>
+        <td>Staff Lounge and Facilities</td>
+        <td class="cost">$100,000</td>
+        <td class="avail">1</td>
+        <td class="desc">
+          The Staff Facility/Lounge is a dedicated space where the General Hospital care team can recharge, connect, and find support during their demanding shifts.<br><br>
+          This space fosters camaraderie and well-being, helping our team stay refreshed and ready to provide high-quality, compassionate, and coordinated care every day.<br><br>
+          Be a part of the everyday moments that support those who care for our community.
+        </td>
+      </tr>
+      <tr>
+        <td>Consult/Interview Rooms</td>
+        <td class="cost">$100,000</td>
+        <td class="avail">2</td>
+        <td class="desc">
+          This calm, inviting room is designed to provide patients and their loved ones with privacy, comfort, and a welcoming atmosphere.<br><br>
+          It’s where General Hospital care teams meet to share important information, offer support, and provide education during some of the most meaningful moments in a patient’s care journey.<br><br>
+          Be a part of those meaningful moments that build trust, understanding, and connection throughout a patients care journey.
+        </td>
+      </tr>
+      <tr>
+        <td>Debrief/Multi Purpose Room</td>
+        <td class="cost">$100,000</td>
+        <td class="avail">1</td>
+        <td class="desc"></td>
+      </tr>
+      <tr>
+        <td>Quiet/Family Room</td>
+        <td class="cost">$100,000</td>
+        <td class="avail">1</td>
+        <td class="desc">
+          This peaceful, private room offers patients and their loved ones a comfortable space to gather, reflect, and find calm during challenging times.<br><br>
+          It provides a welcoming atmosphere where families can connect, support each other, and find moments of quiet amid their care journey.<br><br>
+          Be a part of the quiet moments that bring comfort, trust, and connection throughout a patient’s experience.
+        </td>
+      </tr>
+      <tr>
+        <td>Quiet Room</td>
+        <td class="cost">$100,000</td>
+        <td class="avail">2</td>
+        <td class="desc"></td>
+      </tr>
+      <tr>
+        <td>Exam Rooms</td>
+        <td class="cost">$50,000</td>
+        <td class="avail">18</td>
+        <td class="desc"></td>
+      </tr>
+      <tr>
+        <td>Observation Rooms</td>
+        <td class="cost">$50,000</td>
+        <td class="avail">6</td>
+        <td class="desc"></td>
+      </tr>
+      <tr>
+        <td>Offices</td>
+        <td class="cost">$25,000</td>
+        <td class="avail">9</td>
+        <td class="desc">
+          Offices are the behind-the-scenes hubs where planning, coordination, and leadership take shape.<br><br>
+          From managing schedules and resources to making decisions that keep care running smoothly, this is where the General Hospital team handles the essential work that supports every patient journey.<br><br>
+          Be a part of the work that powers care—where organization, focus, and teamwork come together every day.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+  <!-- OUR PROCESS / WORKFLOW -->
+  <div class="wf">
+    <div class="wf-title">Our Process · workflow</div>
+    <div class="wf-grid">
+      <!-- Left: YouTube iframe (muted, no controls) -->
+      <div class="wf-video">
+        <!-- Replace zF-baikA_dw with your YouTube ID -->
+        <iframe src="https://www.youtube.com/embed/zF-baikA_dw?autoplay=1&mute=1&controls=0&playsinline=1&modestbranding=1&rel=0&loop=1&playlist=zF-baikA_dw" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <!-- Right: text with reveal animation -->
+      <div class="wf-text">
+        <h3 class="wf-h">Stage One — Intake & Analysis</h3>
+        <p class="wf-lead"><strong>Goal:</strong> Gather all source materials and understand the project well enough to convert them accurately into 3D.</p>
+
+        <h4 class="wf-sub">What we collect</h4>
+        <ul class="wf-list">
+          <li><strong>Architectural drawings:</strong> floor plans, sections, elevations, details, MEP/structural (if available).</li>
+          <li><strong>References:</strong> site photos, finishes schedules, mood boards, material specs (R-values, colors, textures), furniture lists.</li>
+          <li><strong>CAD/BIM files:</strong> DWG/DXF, RVT/IFC, PDFs (to scale), plus any coordinate system notes.</li>
+          <li><strong>Constraints:</strong> target LOD (e.g., LOD 200/300), performance budget (polycount), target platform (UE5, WebGL, mobile), deadlines.</li>
+        </ul>
+
+        <h4 class="wf-sub">What we do</h4>
+        <ul class="wf-list">
+          <li><strong>Verification &amp; scaling</strong> — Check dimensions, drawing scale, and units; confirm north, levels, and key datums.</li>
+          <li><strong>Clash/consistency check</strong> — Cross-check plans vs. elevations/sections; note missing heights, window schedules, stair details, etc.</li>
+          <li><strong>Scope definition</strong> — Define inclusion list (shell, interior partitions, FF&amp;E, landscape), LOD per category, render vs. real-time needs.</li>
+          <li><strong>Delivery plan</strong> — Choose pipeline (e.g., Revit → IFC → Blender → Unreal), file formats, naming conventions, and review milestones.</li>
+        </ul>
+
+        <h4 class="wf-sub">Deliverables</h4>
+        <ul class="wf-list">
+          <li>Intake report with questions/RFIs.</li>
+          <li>Confirmed scope + LOD matrix.</li>
+          <li>Schedule with milestones and review checkpoints.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Fade out white mask once the YouTube iframe reports loaded (and as a fallback after 1.5s)
+    document.querySelectorAll('.wf-video').forEach(function(w){
+      var f = w.querySelector('iframe');
+      var m = w.querySelector('.wf-mask');
+      if (!f || !m) return;
+      var hide = function(){ m.style.opacity = 0; };
+      f.addEventListener('load', function(){ setTimeout(hide, 300); });
+      setTimeout(hide, 1500);
+    });
+  </script>
+  <!-- OUR PROCESS / WORKFLOW — STAGE TWO (chessboard: text left, video right) -->
+  <div class="wf">
+    <div class="wf-grid alt">
+      <!-- Left: text -->
+      <div class="wf-text">
+        <h3 class="wf-h">Stage Two — Conversion from 2D to 3D</h3>
+        <p class="wf-lead"><strong>Goal:</strong> Build an accurate, optimized 3D model from 2D drawings suitable for visualization, coordination, or real-time use.</p>
+
+        <h4 class="wf-sub">Inputs</h4>
+        <ul class="wf-list">
+          <li>Clean, scaled 2D drawings (DWG/DXF/PDF), reference photos, material schedules.</li>
+        </ul>
+
+        <h4 class="wf-sub">Pipeline (high level)</h4>
+        <ul class="wf-list">
+          <li><strong>Set up the project</strong> — Establish units, origin, levels, and grids. Import DWGs on locked reference layers.</li>
+          <li><strong>Massing &amp; structural shell</strong> — Create slabs, walls, roofs from plan/section profiles; apply true heights from levels.</li>
+          <li><strong>Openings &amp; components</strong> — Add doors, windows, stairs, railings from schedules/details; keep parametric sizes when possible.</li>
+          <li><strong>Interior build-out</strong> — Partitions, ceilings, built-ins, sanitary ware, casework. Place key FF&amp;E for scale/context.</li>
+          <li><strong>Site &amp; context (if in scope)</strong> — Terrain from contours, adjacent masses, curb lines, vegetation placeholders.</li>
+          <li><strong>Materials &amp; UVs</strong> — Logical material names (e.g., Floor_Tile_600x600), UV scale matches real size.</li>
+          <li><strong>Optimization for target platform</strong> — Instance repeats, generate LODs, lightmap UVs for real-time, tidy naming (Category_Type_Size_V##).</li>
+          <li><strong>QA &amp; dimensional checks</strong> — Spot‑measure spans, door heights, stair risers; validate vs. drawings/RFIs.</li>
+          <li><strong>Packaging &amp; export</strong> — Deliver native file + exports (FBX/GLB/IFC/UAsset) and a readme (versions, units).</li>
+        </ul>
+
+        <h4 class="wf-sub">Standards &amp; conventions</h4>
+        <ul class="wf-list">
+          <li><strong>Units:</strong> meters (or client spec); origin at project base point.</li>
+          <li><strong>Layers/Collections:</strong> Architecture / Structure / MEP / FF&amp;E / Site.</li>
+          <li><strong>Naming:</strong> A_Wall_Int_100mm_V01, A_Window_1200x1500_V02.</li>
+        </ul>
+
+        <h4 class="wf-sub">LOD targets (example)</h4>
+        <ul class="wf-list">
+          <li>Exterior shell: <strong>LOD 300</strong> (accurate dims, simplified trims).</li>
+          <li>Interior: <strong>LOD 200–300</strong> depending on review needs.</li>
+          <li>FF&amp;E: hero items <strong>LOD 300</strong>; background <strong>LOD 150–200</strong>.</li>
+        </ul>
+
+        <h4 class="wf-sub">Quality checks before delivery</h4>
+        <ul class="wf-list">
+          <li>No non‑manifold geometry; normals unified.</li>
+          <li>Pivot at logical placement point; transforms frozen.</li>
+          <li>Real‑world scale verified (e.g., door 2.10 m).</li>
+          <li>Material count reasonable; texel density consistent.</li>
+          <li>File opens cleanly without missing links.</li>
+        </ul>
+
+        <h4 class="wf-sub">Deliverables</h4>
+        <ul class="wf-list">
+          <li>3D model (native + agreed export).</li>
+          <li>Material list (CSV/PDF) mapping to the model.</li>
+          <li>QA report (assumptions, open RFIs).</li>
+          <li>Optional: preview renders or lightweight viewer (GLB).</li>
+        </ul>
+      </div>
+
+      <!-- Right: YouTube (muted, no controls) -->
+      <div class="wf-video">
+        <iframe src="https://www.youtube.com/embed/O0hyodrVwE8?autoplay=1&mute=1&controls=0&playsinline=1&modestbranding=1&rel=0&loop=1&playlist=O0hyodrVwE8" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+  <!-- OUR PROCESS / WORKFLOW — STAGE THREE (chessboard: video left, text right) -->
+  <div class="wf">
+    <div class="wf-grid">
+      <!-- Left: YouTube (muted, no controls) -->
+      <div class="wf-video">
+        <iframe src="https://www.youtube.com/embed/yP8u3NFmKkQ?autoplay=1&mute=1&controls=0&playsinline=1&modestbranding=1&rel=0&loop=1&playlist=yP8u3NFmKkQ" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <!-- Right: text -->
+      <div class="wf-text">
+        <h3 class="wf-h">Stage Three — Rendering (Lookdev, Lighting &amp; Output)</h3>
+        <p class="wf-lead"><strong>Goal:</strong> Produce photoreal (or stylized) stills, 360° panoramas, and/or animation from the approved 3D model.</p>
+
+        <h4 class="wf-sub">Inputs</h4>
+        <ul class="wf-list">
+          <li>Approved 3D scene with materials + UVs, scale verified.</li>
+          <li>Style direction (references/mood), time-of-day, weather, occupancy level.</li>
+          <li>Brand/CI constraints (color space, framing, overlays, logo).</li>
+        </ul>
+
+        <h4 class="wf-sub">Pipeline Overview — Track A (Real‑time · Unreal Engine 5)</h4>
+        <ul class="wf-list">
+          <li><strong>Scene prep</strong>: Nanite where suitable; Lumen GI/Reflections; Virtual Shadow Maps; ACES tonemapping.</li>
+          <li><strong>Lighting</strong>: Sun &amp; Sky, HDRI for overcast/night; Rect Lights for interiors.</li>
+          <li><strong>Materials</strong>: PBR maps (BaseColor/Roughness/Metallic/Normal/AO); adjust clearcoat/subsurface; verify texel density.</li>
+          <li><strong>Cameras</strong>: Sequencer; filmback (36×24 mm), lenses 18–85 mm; physical exposure; autofocus/rack focus as needed.</li>
+          <li><strong>Quality</strong>: Screen percentage 150–200% for stills; MRQ AA (TAAU/TSR + Temporal Samples 8–16).</li>
+          <li><strong>Output</strong>: Stills EXR 16‑bit; animations ProRes 422 HQ or EXR/PNG; panoramas 8–12K.</li>
+        </ul>
+
+        <h4 class="wf-sub">Pipeline Overview — Track B (Offline · V‑Ray / Corona / Cycles)</h4>
+        <ul class="wf-list">
+          <li><strong>Lighting</strong>: Physical Sun/Sky or calibrated HDRIs; interior area lights; portals (if engine uses them).</li>
+          <li><strong>Sampling</strong>: 256–1024 spp; denoise (OIDN/OptiX 0.3–0.5); stable seed &amp; light clamping for anim.</li>
+          <li><strong>AOVs/Passes</strong>: Beauty, Diffuse, Reflection, Refraction, Emission, SSS, Specular, Cryptomatte, Z‑Depth, Position, Normal.</li>
+          <li><strong>Output</strong>: EXR 16‑bit/32‑bit (ACEScg); graded PNG/TIFF &amp; ProRes/H.264 deliveries.</li>
+        </ul>
+
+        <h4 class="wf-sub">Look Development</h4>
+        <ul class="wf-list">
+          <li>WB &amp; contrast via ACES; avoid clipped highlights.</li>
+          <li>Material tuning: IORs, roughness ranges; scale‑corrected textures; clean tiling/seams.</li>
+          <li>Set dressing (scope‑dependent): plants, people, props; hero assets at higher LOD.</li>
+        </ul>
+
+        <h4 class="wf-sub">Composition &amp; Motion</h4>
+        <ul class="wf-list">
+          <li>Eye‑level 1.50–1.65 m for interiors; orthographic elev/section as needed.</li>
+          <li>Rule of thirds, leading lines; avoid extreme distortion unless intentional.</li>
+          <li>Animation: 5–12 s shots; ease in/out; 0.3–0.6 m/s dolly; gentle parallax; 180° rule.</li>
+        </ul>
+
+        <h4 class="wf-sub">QA Checklist (pre‑delivery)</h4>
+        <ul class="wf-list">
+          <li>No light leaks/fireflies; consistent exposure.</li>
+          <li>Correct shadow softness &amp; contact shadows.</li>
+          <li>Clean normals; no flipped faces or floats.</li>
+          <li>Consistent texel density; no stretching.</li>
+          <li>Color pipeline verified (ACES → sRGB/Rec.709).</li>
+        </ul>
+
+        <h4 class="wf-sub">Post‑Production</h4>
+        <ul class="wf-list">
+          <li>Grade in ACES (lift/gamma/gain); subtle bloom/glare; vignette when needed.</li>
+          <li>Depth of field, motion blur (optical or in‑engine).</li>
+          <li>Compositing from AOVs (Cryptomatte masks); sky replacements if specified; overlays/branding.</li>
+        </ul>
+
+        <h4 class="wf-sub">Deliverables</h4>
+        <ul class="wf-list">
+          <li>Stills: 4K PNG/TIFF + web JPEGs; optional 8K hero views.</li>
+          <li>360°: 8–12K EXR/JPEG equirectangular; optional WebVR viewer.</li>
+          <li>Animation: 1080p/4K master (ProRes 422 HQ), web H.264/H.265 15–40 Mbps.</li>
+          <li>Source: EXR sequences, LUTs, project files (on request), shot list &amp; contact sheet.</li>
+        </ul>
+
+        <h4 class="wf-sub">Reviews &amp; Milestones (example)</h4>
+        <ul class="wf-list">
+          <li>Lookdev frames (6–10 stills) — lighting/materials approval.</li>
+          <li>Anim previz (playblasts / low‑sample) — camera paths &amp; timing.</li>
+          <li>Draft render — 80% quality for notes.</li>
+          <li>Final render &amp; grade — delivery + one revision pass for color/levels.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- OUR PROCESS / WORKFLOW — STAGE FOUR (full video, text below) -->
+  <div class="wf wf-full">
+    <div class="wf-video full">
+      <iframe src="https://www.youtube.com/embed/DtJShgf8Zm4?autoplay=1&mute=1&controls=0&playsinline=1&modestbranding=1&rel=0&loop=1&playlist=DtJShgf8Zm4" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <div class="wf-text wide">
+      <h3 class="wf-h">Stage Four — Cinematic Walkthrough (film through the interior)</h3>
+      <p class="wf-lead">At this stage, we create a smooth, story‑driven walkthrough that highlights circulation, light, and materials while conveying the design intent.</p>
+
+      <h4 class="wf-sub">Pre‑production (planning)</h4>
+      <ul class="wf-list">
+        <li><strong>Route &amp; structure:</strong> entry → key moments → final frame (60–120 s per level).</li>
+        <li><strong>Shot list:</strong> establishing → reveals → hero angles → detail inserts → closing. Mark door opens/light changes.</li>
+        <li><strong>Tempo &amp; music:</strong> pick BPM to match camera speed; cut on bars.</li>
+        <li><strong>Time of day:</strong> lock one TOD for continuity (e.g., golden hour).</li>
+        <li><strong>Tech constraints:</strong> target quality (4K/30 or 4K/60), poly/texture budget; enable level streaming if needed.</li>
+      </ul>
+
+      <h4 class="wf-sub">Production (Unreal Engine 5)</h4>
+      <h5 class="wf-sub">Project &amp; cameras</h5>
+      <ul class="wf-list">
+        <li>Master Sequence + sub‑sequences by zone.</li>
+        <li>CineCameraActor, filmback 36×24 mm, lenses 18–85 mm.</li>
+        <li>ACES on; manual exposure (no auto).</li>
+      </ul>
+      <h5 class="wf-sub">Camera motion</h5>
+      <ul class="wf-list">
+        <li>Camera on Spline/Cine Rail (dolly).</li>
+        <li>Speeds: interiors 0.3–0.6 m/s; corridors up to 0.8 m/s.</li>
+        <li>Turns ≤ 45°/s; no shake unless intentional.</li>
+        <li>Focus tracking on targets; rack focus for emphasis only.</li>
+      </ul>
+      <h5 class="wf-sub">Lighting &amp; look</h5>
+      <ul class="wf-list">
+        <li>Lumen GI/Reflections, Virtual Shadow Maps.</li>
+        <li>Directional + Sky Atmosphere; HDRI for night/overcast; Rect/IES for interiors.</li>
+        <li>Consistent color temps (e.g., 3000 K warm, 5600 K daylight).</li>
+        <li>Materials: correct roughness/normal scale so highlights read cleanly.</li>
+      </ul>
+
+      <h4 class="wf-sub">Micro‑animation (optional)</h4>
+      <ul class="wf-list">
+        <li>Doors/curtains/water/screens; subtle wind on plants.</li>
+        <li>Hero assets high quality; background instanced.</li>
+      </ul>
+
+      <h4 class="wf-sub">Rendering</h4>
+      <ul class="wf-list">
+        <li>Movie Render Queue: 4K (3840×2160), 30 fps (or 60 fps for fast motion).</li>
+        <li>AA High, 8–16 temporal samples; Screen Percentage 150–200%.</li>
+        <li>Motion blur on (~180° shutter). Format: EXR 16‑bit (ACEScg) or ProRes 422 HQ for previews.</li>
+      </ul>
+
+      <h4 class="wf-sub">Post‑production</h4>
+      <ul class="wf-list">
+        <li>Edit rhythm: cut on action/music; alternate wide → medium → detail.</li>
+        <li>Audio: ambience + light foley + music; deliver around −16 LUFS (web).</li>
+        <li>Grading: ACES → Rec.709; gentle contrast, protect highlights.</li>
+        <li>Graphics: intro/outro, logo, lower‑thirds; optional plan overlay.</li>
+      </ul>
+
+      <h4 class="wf-sub">QA checklist</h4>
+      <ul class="wf-list">
+        <li>No clipping through geometry; door swings clear.</li>
+        <li>Stable exposure; no auto‑exposure jumps.</li>
+        <li>No light leaks/fireflies; consistent shadows.</li>
+        <li>Clean normals/UVs; even texel density.</li>
+        <li>Smooth path; no jerks or sudden speed changes.</li>
+        <li>Color pipeline verified (ACES → sRGB/Rec.709).</li>
+      </ul>
+    </div>
+  </div>
+  <!-- OUR PROCESS / WORKFLOW — STAGE FIVE (chessboard: text left, video right) -->
+  <div class="wf">
+    <div class="wf-grid alt">
+      <!-- Left: text -->
+      <div class="wf-text">
+        <h3 class="wf-h">Stage Five — Naming Opportunities (Objects &amp; Placements)</h3>
+        <p class="wf-lead">At this stage, we create a mapped, tiered system of physical &amp; digital placements for sponsor/donor names—tested in 3D for scale, visibility, and accessibility.</p>
+
+        <h4 class="wf-sub">At this stage, we</h4>
+        <ul class="wf-list">
+          <li>Audit the environment and map high‑impact, high‑visibility placements for sponsor/donor names.</li>
+          <li>Define sponsorship tiers and build a size/material/lighting tier matrix aligned to fundraising goals.</li>
+          <li>Design tangible &amp; digital objects (plaques, donor walls, feature walls, signage, floor inlays, digital displays, sculptural markers).</li>
+          <li>Prototype objects in 3D inside the approved scene to test scale, sightlines, and legibility at real eye heights (~1.5–1.65 m).</li>
+          <li>Validate accessibility &amp; code (mounting heights, contrast, clearances, fixings, edge radii).</li>
+          <li>Establish brand rules (typography sizes, clear‑space, contrast ratios, max name length, multilingual handling).</li>
+          <li>Build content templates (parametric text; CSV‑driven variants) for rapid name updates.</li>
+          <li>Produce specs &amp; shop drawings; deliver finalized assets and an update guide.</li>
+        </ul>
+
+        <h4 class="wf-sub">We use (inputs)</h4>
+        <ul class="wf-list">
+          <li>Approved 3D model &amp; plans (zones, circulation, key sightlines).</li>
+          <li>Brand kit (logo, colors, typography, tone).</li>
+          <li>Sponsorship tiers + legal/contract notes.</li>
+          <li>Accessibility &amp; code requirements (ADA/ISO, fire safety, mounting heights).</li>
+        </ul>
+
+        <h4 class="wf-sub">We produce (deliverables)</h4>
+        <ul class="wf-list">
+          <li>Annotated location plans with proposed placements (entries, lobbies, corridors, feature walls, rooms, outdoor nodes).</li>
+          <li>Object designs and 3D previews (in‑context renders + short UE5 fly‑throughs).</li>
+          <li>Tier matrix with sizes, materials, illumination, and price bands (Platinum/Gold/Silver/Room/Seat).</li>
+          <li>Specs &amp; shop drawings (PDF/DWG) and a brand usage guide.</li>
+          <li>Assets &amp; templates: instanced UE5 objects with updatable names; CSV/JSON templates.</li>
+        </ul>
+
+        <h4 class="wf-sub">How we do it (process)</h4>
+        <ul class="wf-list">
+          <li>Opportunity audit → sightlines, dwell points, hero walls; tag by impact/traffic.</li>
+          <li>Tiering &amp; matrix → object types, dimensions, finishes, lighting, budgets per tier.</li>
+          <li>Concept design → wall‑mounted / freestanding / integrated; materials &amp; lighting choices.</li>
+          <li>Prototype in 3D → place in scene; run visibility/legibility checks from approach angles.</li>
+          <li>Accessibility &amp; compliance → heights, contrast/tactile needs, egress clearances, fixings.</li>
+          <li>Documentation → annotated sheets, exploded views, BOMs, finish schedules.</li>
+          <li>Handover → export assets, provide licenses/substitutions, update guide.</li>
+        </ul>
+
+        <h4 class="wf-sub">Example tier matrix (excerpt)</h4>
+        <ul class="wf-list">
+          <li><strong>Feature Wall (Platinum):</strong> 3000×1800 mm panel; brushed metal + backlit glass letters; dimmable LED.</li>
+          <li><strong>Room Naming (Gold):</strong> 600×300 mm plaque; anodized aluminum + engraved infill; non‑glare finish.</li>
+          <li><strong>Zone Marker (Silver):</strong> 400×200 mm plaque; solid surface + UV print; standoffs.</li>
+          <li><strong>Seat/Bench (Bronze):</strong> 120×40 mm plate; stainless steel, laser‑etched; tamper‑resistant screws.</li>
+          <li><strong>Digital Spot:</strong> 55″ portrait display; donor rotation; CMS‑ready.</li>
+        </ul>
+
+        <h4 class="wf-sub">Technical guidelines we follow</h4>
+        <ul class="wf-list">
+          <li><strong>Typography:</strong> brand font; x‑height for 5 m read ≈ 60–80 mm; sensible fallbacks.</li>
+          <li><strong>Contrast:</strong> WCAG AA ≥ 4.5:1; glare‑controlled finishes.</li>
+          <li><strong>Lighting:</strong> 200–400 lx on plaque; avoid specular hotspots; night‑mode curves.</li>
+          <li><strong>Durability:</strong> exterior IP ratings; vandal‑resistant fasteners; replaceable plates.</li>
+          <li><strong>Data workflow:</strong> CSV/JSON → auto‑layout templates → versioned exports.</li>
+        </ul>
+      </div>
+
+      <!-- Right: YouTube (muted, no controls) -->
+      <div class="wf-video">
+        <iframe src="https://www.youtube.com/embed/1HixZRdJEec?autoplay=1&mute=1&controls=0&playsinline=1&modestbranding=1&rel=0&loop=1&playlist=1HixZRdJEec" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+  <!-- OUR PROCESS / WORKFLOW — STAGE SIX (full screen video, text below) -->
+  <div class="wf-bleed">
+    <div class="hero-video">
+      <iframe src="https://www.youtube.com/embed/gNnFtDIplMM?autoplay=1&mute=1&controls=0&playsinline=1&modestbranding=1&rel=0&loop=1&playlist=gNnFtDIplMM" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  </div>
+  <div class="wf">
+    <div class="wf-text wide">
+      <h3 class="wf-h">Stage Six — Data Population (filling the model with data)</h3>
+      <p class="wf-lead">At this stage, we populate the 3D/BIM model with structured metadata so it’s searchable, exportable, and ready for operations, fundraising, and visualization pipelines.</p>
+
+      <h4 class="wf-sub">Inputs</h4>
+      <ul class="wf-list">
+        <li>Approved 3D model (BIM/DCC/UE5 scene).</li>
+        <li>Source datasets: room/area schedules, FF&amp;E lists, materials, donor registry, signage matrix, maintenance &amp; cost tables, localization strings.</li>
+        <li>Standards to follow (e.g., IFC, COBie, ISO 19650 naming, Uniclass/OmniClass).</li>
+      </ul>
+
+      <h4 class="wf-sub">What we add (key data domains)</h4>
+      <ul class="wf-list">
+        <li><strong>Spaces &amp; rooms:</strong> IDs, names, functions, floor/zone, areas (GIA/NIA), accessibility data.</li>
+        <li><strong>Architectural elements:</strong> type/instance codes, materials, fire ratings, acoustic values, U/R‑values, manufacturers.</li>
+        <li><strong>FF&amp;E &amp; equipment:</strong> model numbers, warranties, maintenance intervals, asset barcodes/QR links.</li>
+        <li><strong>Signage &amp; naming opportunities:</strong> tier, donor name, language, character limits, approval status.</li>
+        <li><strong>Cost &amp; phase:</strong> WBS/CSI codes, procurement status, install phase, replacement cost.</li>
+        <li><strong>Wayfinding &amp; geodata:</strong> coordinates, path IDs, nearest exits, visibility tags for tours.</li>
+        <li><strong>Localization:</strong> multilingual labels and strings (EN/ES/…).</li>
+      </ul>
+
+      <h4 class="wf-sub">Data schema &amp; governance</h4>
+      <ul class="wf-list">
+        <li><strong>Schema:</strong> IFC Psets + custom properties, COBie fields where required.</li>
+        <li><strong>Unique IDs:</strong> stable GUID/UID per element; no duplicates; versioned change log.</li>
+        <li><strong>Naming convention:</strong> ISO 19650‑style file/asset names (e.g., A_Wall_Int_100mm_V03).</li>
+        <li><strong>Validation rules:</strong> required fields, allowed values, ranges, regex patterns.</li>
+      </ul>
+
+      <h4 class="wf-sub">Mapping &amp; automation</h4>
+      <h5 class="wf-sub">Field mapping</h5>
+      <ul class="wf-list">
+        <li>Create a mapping table (Source → Target):</li>
+        <li>CSV.RoomName → IfcSpace.Name</li>
+        <li>CSV.DonorName → Signage_BP.DonorText</li>
+        <li>CSV.MaintenanceInterval → Asset.MaintenanceDays</li>
+      </ul>
+      <h5 class="wf-sub">Batch population</h5>
+      <ul class="wf-list">
+        <li><strong>BIM (Revit/IFC):</strong> Shared Parameters, Type/Instance params, Classification Manager; export IFC with mapped Psets.</li>
+        <li><strong>DCC (Blender):</strong> Custom properties on Collections/Objects via Python; inherit to instanced assets.</li>
+        <li><strong>Unreal Engine 5:</strong> DataTables (CSV/JSON), Primary Data Assets, actor Tags/Metadata; Blueprint components to read rows at begin play.</li>
+      </ul>
+      <h5 class="wf-sub">Automation tools</h5>
+      <ul class="wf-list">
+        <li>CSV/JSON importers, pyRevit/Revit API or Blender Python scripts, UE5 Editor Utility Widgets for bulk assign.</li>
+        <li>Optional live link to Google Sheets/CSV (pull → validate → write).</li>
+      </ul>
+
+      <h4 class="wf-sub">Quality control (before sign‑off)</h4>
+      <ul class="wf-list">
+        <li><strong>Completeness:</strong> no empty required fields; all rooms/elements have IDs.</li>
+        <li><strong>Consistency:</strong> units in meters; value ranges (e.g., door height ≈ 2.10 m); enums match schema.</li>
+        <li><strong>Uniqueness:</strong> no duplicate room numbers, no reused GUIDs.</li>
+        <li><strong>Cross‑checks:</strong> donor names meet character limits; multilingual text renders correctly (accents, RTL if any).</li>
+        <li><strong>Exports test:</strong> IFC opens with properties intact; COBie sheet passes validator; UE5 reads DataTables without missing keys.</li>
+      </ul>
+
+      <h4 class="wf-sub">Integration with visualization &amp; ops</h4>
+      <ul class="wf-list">
+        <li><strong>UE5 hooks:</strong> Blueprint labels/tooltips/filters (e.g., filter "Gold tier").</li>
+        <li>Cinematics auto‑pull donor names and room titles per shot list.</li>
+        <li>Interactive tours filter spaces by function, floor, accessibility.</li>
+        <li><strong>QR codes (optional):</strong> per‑asset URL (asset/{UID}); scan → maintenance/donor page.</li>
+        <li><strong>Analytics (optional):</strong> tag hotspots for heatmaps or user flows in demos.</li>
+      </ul>
+    </div>
+  </div>
+
+
+<script>
+(function () {
+  // ---- Проекты ----
+  const PROJECTS = {
+    "0": { id:"0", name:"General Hospital",
+      viewer:"https://app.seekbeak.com/v/A0zrX6AMqvQ",
+      titleTop:["GENERAL HOSPITAL — PART 4 EXPANSION","Inpatient Unit — Typical Floor Plan","Levels 5, 6, 7"]
+
+    },
+    "1": { id:"1", name:"Ken Sargent House",
+      viewer:"https://app.seekbeak.com/v/ydjWPL4eq32",
+      titleTop:["Ken Sargent House","",""]
+    },
+    "2": { id:"2", name:"Brightwell Medical Center",
+      viewer:"https://app.seekbeak.com/v/OAzAWg5rqQp",
+      titleTop:["Brightwell Medical Center","",""]
+    },
+    "3": { id:"3", name:"Campus f Care",
+      viewer:"https://app.seekbeak.com/v/VvjMv2MRqlJ",
+      titleTop:["Campus f Care","",""]
+    }
+  };
+
+  // ---- helpers ----
+  const getProjectFromURL = () => (new URL(location.href)).searchParams.get('project') || "0";
+  const getFrame = () => document.getElementById('panoFrame') || document.querySelector('#viewer iframe');
+  const markActive = (pid) => {
+    document.querySelectorAll('.nav-link').forEach(a => a.classList.toggle('active', a.dataset.project === pid));
+  };
+  const setTopTitle = (parts = []) => {
+    const h1 = document.querySelector('.page-title');
+    if (!h1) return;
+    h1.innerHTML =
+      `<span class="accent">${parts[0]||""}</span><br>`+
+      `<span class="accent">${parts[1]||""}</span><br>`+
+      `<span class="muted">${parts[2]||""}</span>`;
+  };
+
+  // Скрыть/показать верхнюю таблицу "Naming Opportunities"
+  function hideFirstTable(hide){
+    const firstWrap = document.querySelectorAll('.table-wrap')[0];
+    const firstTitleSection = firstWrap ? firstWrap.previousElementSibling : null;
+    [firstWrap, firstTitleSection].forEach(el => { if (el) el.classList.toggle('is-hidden', !!hide); });
+  }
+
+  // Пересобрать селект "Select your object" из ВИДИМЫХ таблиц
+  function rebuildSelectFromTables(){
+    // удалить прошлый UI
+    document.querySelectorAll('.viewer-ui').forEach(el => el.remove());
+
+    const viewer = document.getElementById('viewer');
+    const frame  = getFrame();
+    if (!viewer || !frame) return;
+
+    // панель + селект
+    const ui = document.createElement('div');
+    ui.className = 'viewer-ui';
+    const select = document.createElement('select');
+    select.id = 'panoSelect';
+    select.setAttribute('aria-label','Select your object');
+    const ph = document.createElement('option');
+    ph.value = ''; ph.textContent = 'Select your object';
+    ph.disabled = true; ph.hidden = true; ph.selected = true;
+    select.appendChild(ph);
+    ui.appendChild(select);
+    viewer.appendChild(ui);
+
+    const urlToRow = new Map();
+    const noUrlValues = new Set();
+    let lastValidValue = '';
+
+    // Берём только .table-wrap, которые НЕ скрыты
+    document.querySelectorAll('.table-wrap:not(.is-hidden)').forEach((wrap, idx) => {
+      const table = wrap.querySelector('.naming-table'); if(!table) return;
+      const label = wrap.previousElementSibling?.querySelector('.table-title')?.textContent?.trim() || `Table ${idx+1}`;
+      const group = document.createElement('optgroup'); group.label = label;
+
+      table.querySelectorAll('tbody tr').forEach((tr, i) => {
+        const name = (tr.cells?.[0]?.textContent || `Item ${i+1}`).trim();
+        const costCell = tr.querySelector('td.cost') || tr.cells?.[1];
+        const rawCost  = costCell ? costCell.textContent.replace(/\s+/g,' ').trim() : '';
+        const labelText = rawCost ? `${name} — ${rawCost}` : name;
+
+        const url = tr.getAttribute('data-pano') || '';
+        const opt = document.createElement('option');
+        if (url) { opt.value = url; urlToRow.set(url, tr); }
+        else     { const v = `__no_url__${idx}_${i}`; opt.value = v; noUrlValues.add(v); }
+        opt.textContent = labelText;
+        group.appendChild(opt);
+
+        // клики по строкам
+        tr.onclick = () => {
+          if (!url) return;
+          if (select.querySelector(`option[value="${CSS.escape(url)}"]`)) {
+            select.value = url; lastValidValue = url;
+          }
+          frame.src = url;
+          document.querySelectorAll('.naming-table tbody tr.active').forEach(r=>r.classList.remove('active'));
+          tr.classList.add('active');
+        };
+        tr.onkeydown = (e) => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); tr.click(); }
+        };
+        tr.tabIndex = 0; tr.setAttribute('role','button');
+      });
+
+      if (group.children.length) select.appendChild(group);
+    });
+
+    // выбор в селекте
+    select.onchange = () => {
+      const val = select.value;
+      if (noUrlValues.has(val)) {
+        select.classList.add('invalid');
+        setTimeout(()=>select.classList.remove('invalid'),600);
+        if (lastValidValue && select.querySelector(`option[value="${CSS.escape(lastValidValue)}"]`)) {
+          select.value = lastValidValue;
+        } else { select.selectedIndex = 0; }
+        return;
+      }
+      lastValidValue = val;
+      document.querySelectorAll('.naming-table tbody tr.active').forEach(r=>r.classList.remove('active'));
+      const tr = urlToRow.get(val);
+      if (tr) tr.classList.add('active');
+      getFrame().src = val;
+    };
+
+    // старт: если текущий src есть в таблицах — выбрать его
+    const initial = frame.getAttribute('src');
+    if (urlToRow.has(initial)) {
+      select.value = initial;
+      lastValidValue = initial;
+      urlToRow.get(initial)?.classList.add('active');
+    } else {
+      select.selectedIndex = 0;
+    }
+  }
+
+  // Загрузка проекта
+  async function loadProject(pid, push=true){
+    const proj = PROJECTS[pid] || PROJECTS["0"];
+    markActive(proj.id);
+
+    const frame = getFrame();
+    if (frame && proj.viewer) frame.src = proj.viewer;
+    setTopTitle(proj.titleTop);
+
+    // Для project=1 скрываем верхнюю таблицу, оставляем вторую и всё ниже
+    hideFirstTable(proj.id === "1");
+
+    // Пересобираем селект из видимых таблиц
+    rebuildSelectFromTables();
+
+    // URL и title
+    if (push) {
+      const u = new URL(location.href);
+      u.searchParams.set('project', proj.id);
+      history.pushState({project: proj.id}, '', u.toString());
+    }
+    document.title = `${proj.name} — General Hospital 360°`;
+  }
+
+  // Навигация из хедера и история
+  document.addEventListener('click', (e)=>{
+    const a = e.target.closest('a.nav-link[data-project]');
+    if (!a) return;
+    e.preventDefault();
+    loadProject(a.dataset.project, true);
+  });
+  window.addEventListener('popstate', ()=> loadProject(getProjectFromURL(), false));
+
+  // Первый запуск
+  loadProject(getProjectFromURL(), false);
+})();
+</script>
+
+
+
+
+<script>
+(function(){
+  const header = document.querySelector('.site-header');
+  const nav    = document.querySelector('.nav');
+  const links  = [...document.querySelectorAll('.nav .nav-link')];
+
+  // прогресс-бар (создаём один раз)
+  const bar = document.createElement('div');
+  bar.className = 'scrollbar';
+  header.appendChild(bar);
+
+  let lastY = window.scrollY;
+  let ticking = false;
+  let hidden = false;
+
+  function onScroll(){
+    const y  = window.scrollY;
+    const dh = document.documentElement.scrollHeight - innerHeight;
+
+    // прогресс прокрутки
+    const p = dh > 0 ? (y / dh) : 0;
+    bar.style.transform = `scaleX(${p})`;
+
+    // компактный режим
+    header.classList.toggle('is-compact', y > 24);
+
+    // более умное автоскрытие
+    const delta = y - lastY;
+    const pastHero = y > 300;            // не прячем слишком рано
+    if (Math.abs(delta) > 4 && pastHero){
+      hidden = delta > 0 && y > 120;     // только при прокрутке вниз
+      header.classList.toggle('is-hidden', hidden);
+    }
+    lastY = y;
+  }
+
+  window.addEventListener('scroll', ()=>{
+    if (!ticking){
+      requestAnimationFrame(()=>{ onScroll(); ticking = false; });
+      ticking = true;
+    }
+  }, {passive:true});
+
+  onScroll();
+
+  /* маркер по пунктам меню */
+  if (nav && links.length){
+    const marker = document.createElement('i');
+    marker.className = 'nav-marker';
+    nav.appendChild(marker);
+
+    function moveMarker(el){
+      const nb = nav.getBoundingClientRect();
+      const rb = el.getBoundingClientRect();
+      marker.style.left  = (rb.left - nb.left - 4) + 'px';
+      marker.style.width = (rb.width + 8) + 'px';
+    }
+    function toActive(){
+      const active = nav.querySelector('.nav-link.active') || links[0];
+      if (active) moveMarker(active);
+    }
+    links.forEach(a=>{
+      a.addEventListener('mouseenter', ()=> moveMarker(a));
+      a.addEventListener('focus',     ()=> moveMarker(a));
+    });
+    nav.addEventListener('mouseleave', toActive);
+    window.addEventListener('resize',  toActive);
+    toActive();
+  }
+
+  /* Section-spy для якорных ссылок (например, #naming) */
+  const anchorLinks = links.filter(a => a.getAttribute('href')?.startsWith('#'));
+  if (anchorLinks.length){
+    const map = new Map();
+    anchorLinks.forEach(a=>{
+      const id = a.getAttribute('href').slice(1);
+      const sec = document.getElementById(id);
+      if (sec) map.set(sec, a);
+    });
+
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        const a = map.get(e.target);
+        if (!a) return;
+        if (e.isIntersecting){
+          links.forEach(l=>l.classList.remove('active'));
+          a.classList.add('active');
+        }
+      });
+    }, {rootMargin: '-30% 0px -60% 0px', threshold: [0, .5, 1]});
+
+    map.forEach((_, sec)=> io.observe(sec));
+  }
+})();
+</script>
+
+<script>
+(function () {
+  // ... твой код выше
+
+  const setTopTitle = (parts = []) => {
+    const [t1, t2, t3] = parts;                            // 3 строки из PROJECTS.titleTop
+    const h1 = document.querySelector('.hero-title');      // правильный селектор
+    const lines = h1 ? h1.querySelectorAll('.hero-line') : null;
+
+    // две строки H1
+    if (lines && lines[0] && t1) lines[0].textContent = t1;
+    if (lines && lines[1] && t2) lines[1].textContent = t2;
+
+    // третий кусочек — в .hero-meta span №3 («Levels …»)
+    const metaSpans = document.querySelectorAll('.hero-meta span');
+    if (metaSpans[2] && t3) metaSpans[2].textContent = t3;
+  };
+
+  // ... остальной код IIFE (hideFirstTable, rebuildSelectFromTables, loadProject и т.д.)
+})();
+</script>
+ы
+
+
+
+</body>
+</html>
+
+
+
