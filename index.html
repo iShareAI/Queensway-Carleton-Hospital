@@ -844,14 +844,14 @@ html, body { overflow-x: hidden; }
 <body>
   <header class="site-header">
   <div class="nav-inner">
-    <!-- ЛОГО слева -->
+    
     <a class="brand" href="index.html" title="Home">
       <img src="img/lg.png" alt="iShare logo">
       
       
     </a>
 
-    <!-- КНОПКИ справа -->
+    
    <nav class="nav">
   <span class="nav-link active">Queensway Carleton Hospital</span>
 </nav>
@@ -883,7 +883,7 @@ html, body { overflow-x: hidden; }
     <div class="hero-ctas">
   <a href="#naming" class="btn btn-primary">Explore Opportunities</a>
 
-  <a href="https://example.com/donation-guide"
+  <a href="https://ishare.giftabulatornow.com/app/give-now?locale=en-CA"
      class="btn btn-orange btn-pill"
      target="_blank" rel="noopener"
      title="discr hw t make effficint dnatin_">
@@ -1212,23 +1212,23 @@ html, body { overflow-x: hidden; }
       `<span class="muted">${parts[2]||""}</span>`;
   };
 
-  // Скрыть/показать верхнюю таблицу "Naming Opportunities"
+ 
   function hideFirstTable(hide){
     const firstWrap = document.querySelectorAll('.table-wrap')[0];
     const firstTitleSection = firstWrap ? firstWrap.previousElementSibling : null;
     [firstWrap, firstTitleSection].forEach(el => { if (el) el.classList.toggle('is-hidden', !!hide); });
   }
 
-  // Пересобрать селект "Select your object" из ВИДИМЫХ таблиц
+  
   function rebuildSelectFromTables(){
-    // удалить прошлый UI
+    
     document.querySelectorAll('.viewer-ui').forEach(el => el.remove());
 
     const viewer = document.getElementById('viewer');
     const frame  = getFrame();
     if (!viewer || !frame) return;
 
-    // панель + селект
+    
     const ui = document.createElement('div');
     ui.className = 'viewer-ui';
     const select = document.createElement('select');
@@ -1245,7 +1245,7 @@ html, body { overflow-x: hidden; }
     const noUrlValues = new Set();
     let lastValidValue = '';
 
-    // Берём только .table-wrap, которые НЕ скрыты
+    
     document.querySelectorAll('.table-wrap:not(.is-hidden)').forEach((wrap, idx) => {
       const table = wrap.querySelector('.naming-table'); if(!table) return;
       const label = wrap.previousElementSibling?.querySelector('.table-title')?.textContent?.trim() || `Table ${idx+1}`;
@@ -1264,7 +1264,7 @@ html, body { overflow-x: hidden; }
         opt.textContent = labelText;
         group.appendChild(opt);
 
-        // клики по строкам
+        
         tr.onclick = () => {
           if (!url) return;
           if (select.querySelector(`option[value="${CSS.escape(url)}"]`)) {
@@ -1283,7 +1283,7 @@ html, body { overflow-x: hidden; }
       if (group.children.length) select.appendChild(group);
     });
 
-    // выбор в селекте
+    
     select.onchange = () => {
       const val = select.value;
       if (noUrlValues.has(val)) {
@@ -1301,7 +1301,7 @@ html, body { overflow-x: hidden; }
       getFrame().src = val;
     };
 
-    // старт: если текущий src есть в таблицах — выбрать его
+    
     const initial = frame.getAttribute('src');
     if (urlToRow.has(initial)) {
       select.value = initial;
@@ -1312,7 +1312,7 @@ html, body { overflow-x: hidden; }
     }
   }
 
-  // Загрузка проекта
+  
   async function loadProject(pid, push=true){
     const proj = PROJECTS[pid] || PROJECTS["0"];
     markActive(proj.id);
@@ -1321,10 +1321,10 @@ html, body { overflow-x: hidden; }
     if (frame && proj.viewer) frame.src = proj.viewer;
     setTopTitle(proj.titleTop);
 
-    // Для project=1 скрываем верхнюю таблицу, оставляем вторую и всё ниже
+    
     hideFirstTable(proj.id === "1");
 
-    // Пересобираем селект из видимых таблиц
+    
     rebuildSelectFromTables();
 
     // URL и title
@@ -1336,7 +1336,7 @@ html, body { overflow-x: hidden; }
     document.title = `${proj.name}  Queensway Carleton Hospital -  360°`;
   }
 
-  // Навигация из хедера и история
+  
   document.addEventListener('click', (e)=>{
     const a = e.target.closest('a.nav-link[data-project]');
     if (!a) return;
@@ -1345,7 +1345,7 @@ html, body { overflow-x: hidden; }
   });
   window.addEventListener('popstate', ()=> loadProject(getProjectFromURL(), false));
 
-  // Первый запуск
+  
   loadProject(getProjectFromURL(), false);
 })();
 </script>
@@ -1359,7 +1359,7 @@ html, body { overflow-x: hidden; }
   const nav    = document.querySelector('.nav');
   const links  = [...document.querySelectorAll('.nav .nav-link')];
 
-  // прогресс-бар (создаём один раз)
+  
   const bar = document.createElement('div');
   bar.className = 'scrollbar';
   header.appendChild(bar);
@@ -1372,18 +1372,18 @@ html, body { overflow-x: hidden; }
     const y  = window.scrollY;
     const dh = document.documentElement.scrollHeight - innerHeight;
 
-    // прогресс прокрутки
+    
     const p = dh > 0 ? (y / dh) : 0;
     bar.style.transform = `scaleX(${p})`;
 
-    // компактный режим
+    
     header.classList.toggle('is-compact', y > 24);
 
-    // более умное автоскрытие
+    
     const delta = y - lastY;
-    const pastHero = y > 300;            // не прячем слишком рано
+    const pastHero = y > 300;            
     if (Math.abs(delta) > 4 && pastHero){
-      hidden = delta > 0 && y > 120;     // только при прокрутке вниз
+      hidden = delta > 0 && y > 120;     
       header.classList.toggle('is-hidden', hidden);
     }
     lastY = y;
@@ -1398,7 +1398,7 @@ html, body { overflow-x: hidden; }
 
   onScroll();
 
-  /* маркер по пунктам меню */
+ 
   if (nav && links.length){
     const marker = document.createElement('i');
     marker.className = 'nav-marker';
@@ -1423,7 +1423,7 @@ html, body { overflow-x: hidden; }
     toActive();
   }
 
-  /* Section-spy для якорных ссылок (например, #naming) */
+  
   const anchorLinks = links.filter(a => a.getAttribute('href')?.startsWith('#'));
   if (anchorLinks.length){
     const map = new Map();
@@ -1451,18 +1451,18 @@ html, body { overflow-x: hidden; }
 
 <script>
 (function () {
-  // ... твой код выше
+  
 
   const setTopTitle = (parts = []) => {
-    const [t1, t2, t3] = parts;                            // 3 строки из PROJECTS.titleTop
-    const h1 = document.querySelector('.hero-title');      // правильный селектор
+    const [t1, t2, t3] = parts;                           
+    const h1 = document.querySelector('.hero-title');      
     const lines = h1 ? h1.querySelectorAll('.hero-line') : null;
 
-    // две строки H1
+    
     if (lines && lines[0] && t1) lines[0].textContent = t1;
     if (lines && lines[1] && t2) lines[1].textContent = t2;
 
-    // третий кусочек — в .hero-meta span №3 («Levels …»)
+    
     const metaSpans = document.querySelectorAll('.hero-meta span');
     if (metaSpans[2] && t3) metaSpans[2].textContent = t3;
   };
@@ -1829,7 +1829,7 @@ html, body { overflow-x: hidden; }
 
 <script>
 (() => {
-  // собираем картинки
+  
   const thumbs = Array.from(document.querySelectorAll('#reel img'));
   const lb = document.getElementById('lb');
   const lbImg = document.getElementById('lbImg');
@@ -1849,7 +1849,7 @@ html, body { overflow-x: hidden; }
     lb.classList.remove('open');
     lb.setAttribute('aria-hidden','true');
     document.body.style.overflow = '';
-    // убираем src, чтобы выгрузить большую картинку
+    
     setTimeout(()=> lbImg.src = '', 200);
   }
   function step(d){
@@ -1863,7 +1863,7 @@ html, body { overflow-x: hidden; }
   closeBtn.addEventListener('click', close);
   lb.addEventListener('click', (e)=> { if (e.target === lb) close(); });
 
-  // клавиатура
+  
   window.addEventListener('keydown', (e)=>{
     if (!lb.classList.contains('open')) return;
     if (e.key === 'Escape') close();
@@ -1871,7 +1871,7 @@ html, body { overflow-x: hidden; }
     if (e.key === 'ArrowLeft')  step(-1);
   });
 
-  // swipe на тач-экранах
+  
   let sx = 0;
   lb.addEventListener('touchstart', e=> sx = e.touches[0].clientX);
   lb.addEventListener('touchend',   e=>{
@@ -1886,6 +1886,7 @@ html, body { overflow-x: hidden; }
 
 </body>
 </html>
+
 
 
 
