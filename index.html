@@ -758,6 +758,57 @@ html, body { overflow-x: hidden; }
 
 
 
+<style>
+  /* === Survey panel (scoped) === */
+  #survey-backdrop{
+    position:fixed; inset:0; background:rgba(0,0,0,.5);
+    z-index:1000; opacity:0; pointer-events:none; transition:opacity .3s ease;
+  }
+  #survey-backdrop.visible{ opacity:1; pointer-events:auto; }
+
+  #survey-panel{
+    position:fixed; top:0; right:-100%; width:min(600px,90vw); height:100%;
+    background:#fff; color:#1b0825; z-index:1001; transition:right .4s ease;
+    box-shadow:-2px 0 8px rgba(0,0,0,.3); padding:16px; overflow:auto; display:flex; flex-direction:column;
+  }
+  #survey-panel.open{ right:0; }
+
+  #survey-close{ background:none; border:0; font-size:28px; align-self:flex-end; cursor:pointer; }
+
+  .survey-section{ margin-top:14px; }
+  .survey-grid{ display:grid; grid-template-columns:1fr; gap:8px; }
+  @media (min-width:600px){ .survey-grid{ grid-template-columns:repeat(2,1fr); } }
+
+  .survey-grid label{
+    display:flex; align-items:center; gap:8px; background:#f9f9f9; padding:8px;
+    border-radius:6px; border:1px solid #ccc; cursor:pointer; font-size:.92rem;
+  }
+
+  .survey-progress{ position:sticky; top:0; z-index:2; background:#fff; padding:10px 0; border-bottom:2px solid #eee; margin:12px 0; }
+  .survey-progress .t{ font-size:.8rem; text-align:center; color:#555; margin-bottom:4px; }
+  .survey-progress .bar{ height:8px; background:#eee; border-radius:5px; overflow:hidden; }
+  .survey-progress .bar > i{ display:block; height:100%; width:0%; background:linear-gradient(90deg,#fff,#fa9828); transition:width .3s ease; }
+
+  .survey-input, .survey-textarea{
+    width:100%; padding:8px; border:1px solid #ccc; border-radius:6px; font-size:.95rem;
+  }
+  .survey-textarea{ min-height:90px; resize:vertical; }
+
+  .survey-consent{ margin-top:auto; padding-top:14px; border-top:1px solid #ddd; }
+  .survey-submit{ margin-top:10px; width:100%; padding:10px; font-size:1rem; background:#000; color:#fff; border:0; border-radius:8px; cursor:pointer; }
+
+  /* small note under sliders */
+  .survey-row{ display:grid; grid-template-columns:1fr auto; gap:8px; align-items:center; }
+  .survey-slider{ width:100%; }
+</style>
+
+
+
+
+
+
+
+
 </head>
 <body>
   <header class="site-header">
@@ -765,9 +816,8 @@ html, body { overflow-x: hidden; }
     <!-- ЛОГО слева -->
     <a class="brand" href="index.html" title="Home">
       <img src="img/lg.png" alt="iShare logo">
-      <!-- если нужен ретина-вариант:
-      <img src="img/lg.png" srcset="img/lg.png 1x, img/lg@2x.png 2x" alt="iShare logo">
-      -->
+      
+      
     </a>
 
     <!-- КНОПКИ справа -->
@@ -806,8 +856,11 @@ html, body { overflow-x: hidden; }
      class="btn btn-orange btn-pill"
      target="_blank" rel="noopener"
      title="discr hw t make effficint dnatin_">
-    Discover How To Make Efficient Donation
+    Discover How To Make Tax Efficient Donations
   </a>
+   <a href="#survey" class="btn btn-primary btn-pill open-survey" role="button">
+  Survey
+</a>
 </div>
 
 
@@ -1043,7 +1096,7 @@ html, body { overflow-x: hidden; }
   </table>
 </div>
 
- 
+  
   <script>
     // Fade out white mask once the YouTube iframe reports loaded (and as a fallback after 1.5s)
     document.querySelectorAll('.wf-video').forEach(function(w){
@@ -1055,7 +1108,7 @@ html, body { overflow-x: hidden; }
       setTimeout(hide, 1500);
     });
   </script>
- 
+  
 
 
 <script>
@@ -1354,14 +1407,365 @@ html, body { overflow-x: hidden; }
   // ... остальной код IIFE (hideFirstTable, rebuildSelectFromTables, loadProject и т.д.)
 })();
 </script>
-ы
+
+
+
+
+
+<!-- === Survey Backdrop & Panel (14 questions, no sliders) === -->
+<div id="survey-backdrop" aria-hidden="true"></div>
+<aside id="survey-panel" aria-hidden="true" aria-label="Charitable survey side panel">
+  <button id="survey-close" aria-label="Close survey">&times;</button>
+
+  <h2>Let's talk about your charitable efforts</h2>
+  <p>Please fill out this short questionnaire to help us understand how we can support your charitable goals.</p>
+
+  <!-- Contact -->
+  <div class="survey-section">
+    <label>Name <input class="survey-input" type="text" name="name" required></label>
+    <label>Email Address <input class="survey-input" type="email" name="email" required></label>
+    <label>Phone Number <input class="survey-input" type="tel" name="phone"></label>
+  </div>
+
+  <!-- Progress -->
+  <div class="survey-progress">
+    <div class="t" id="survey-progress-text">0% completed</div>
+    <div class="bar"><i id="survey-progress-bar"></i></div>
+  </div>
+
+  <!-- Q1 -->
+  <div class="survey-section">
+    <h3>1 In your lifetime how have you accumulated your wealth?</h3>
+    <div class="survey-grid">
+      <label><input type="checkbox" name="wealth" value="personal_initiative"> Personal initiative</label>
+      <label><input type="checkbox" name="wealth" value="successful_investment"> Successful investment</label>
+      <label><input type="checkbox" name="wealth" value="gifts"> Gifts</label>
+      <label><input type="checkbox" name="wealth" value="unexpected_good_fortune"> Unexpected good fortune</label>
+      <label><input type="checkbox" name="wealth" value="inheritance"> Inheritance</label>
+      <label><input type="checkbox" name="wealth" value="building_family_business"> Building or growing a family business</label>
+      <label><input type="checkbox" id="survey-wealth-other" name="wealth" value="other"> Other</label>
+    </div>
+    <div id="survey-wealth-other-wrap" style="display:none; margin-top:8px;">
+      <input class="survey-input" type="text" name="wealth_other" placeholder="Please specify your method of wealth accumulation">
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="survey-section">
+    <h3>2 To which of the following do you feel an obligation regarding the distribution of your wealth?</h3>
+    <p>Choose all that are important to you.</p>
+    <div class="survey-grid">
+      <label><input type="checkbox" name="wealth_obligation" value="spouse"> Spouse</label>
+      <label><input type="checkbox" name="wealth_obligation" value="children"> Children</label>
+      <label><input type="checkbox" name="wealth_obligation" value="business"> Business</label>
+      <label><input type="checkbox" name="wealth_obligation" value="friends"> Friends</label>
+      <label><input type="checkbox" name="wealth_obligation" value="health_care"> Health Care institutions</label>
+      <label><input type="checkbox" name="wealth_obligation" value="community"> Community Institutions</label>
+      <label><input type="checkbox" name="wealth_obligation" value="parents"> Parents</label>
+      <label><input type="checkbox" name="wealth_obligation" value="religious"> Religious institutions</label>
+      <label><input type="checkbox" name="wealth_obligation" value="mentors"> Mentors</label>
+      <label><input type="checkbox" name="wealth_obligation" value="education"> Educational institutions</label>
+      <label><input type="checkbox" name="wealth_obligation" value="none"> None</label>
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="survey-section">
+    <h3>3 Which values do you feel are most important to you in your life?</h3>
+    <p>Select all values that are important to you.</p>
+    <div class="survey-grid">
+      <label><input type="checkbox" name="values" value="honesty_integrity"> Honest/Integrity</label>
+      <label><input type="checkbox" name="values" value="frugality"> Frugality</label>
+      <label><input type="checkbox" name="values" value="spirituality"> Spirituality</label>
+      <label><input type="checkbox" name="values" value="responsibility_for_actions"> Responsibility for Actions</label>
+      <label><input type="checkbox" name="values" value="fellowship"> Fellowship</label>
+      <label><input type="checkbox" name="values" value="recognition"> Recognition</label>
+      <label><input type="checkbox" name="values" value="respect_for_others"> Respect for others</label>
+      <label><input type="checkbox" name="values" value="generosity"> Generosity</label>
+    </div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="survey-section">
+    <h3>4 Why is your first choice of most importance?</h3>
+    <p>Please explain why you ranked your first choice as the most important.</p>
+    <textarea class="survey-textarea" name="first_choice_reason" placeholder="Your explanation here..."></textarea>
+  </div>
+
+  <!-- Q5 -->
+  <div class="survey-section">
+    <h3>5 Which of the following associations are most important to you?</h3>
+    <p>Select all that apply.</p>
+    <div class="survey-grid">
+      <label><input type="checkbox" name="associations" value="family_relationships"> Family relationships</label>
+      <label><input type="checkbox" name="associations" value="social_standing"> Social standing</label>
+      <label><input type="checkbox" name="associations" value="personal"> Personal</label>
+      <label><input type="checkbox" name="associations" value="education"> Education</label>
+      <label><input type="checkbox" name="associations" value="volunteerism"> Volunteerism</label>
+      <label><input type="checkbox" name="associations" value="career"> Career</label>
+      <label><input type="checkbox" name="associations" value="personal_achievement"> Personal achievement/Recreation/Leisure</label>
+      <label><input type="checkbox" name="associations" value="personal_initiative"> Personal initiative/Hard Work</label>
+    </div>
+  </div>
+
+  <!-- Q6 -->
+  <div class="survey-section">
+    <h3>6 What is your primary motivation for planning your estate?</h3>
+    <p>Select all that apply.</p>
+    <div class="survey-grid">
+      <label><input type="checkbox" name="estate_planning" value="increase_inheritance"> To increase inheritance for heirs</label>
+      <label><input type="checkbox" name="estate_planning" value="reduce_tax"> To reduce tax</label>
+      <label><input type="checkbox" name="estate_planning" value="charitable_contributions"> To make charitable contributions</label>
+    </div>
+  </div>
+
+  <!-- Q7 -->
+  <div class="survey-section">
+    <h3>7 Which statement reflects your views regarding estate planning?</h3>
+    <div class="survey-grid">
+      <label><input type="checkbox" name="estate-planning" value="spend-during-lifetime"> I prefer to spend my assets during my lifetime</label>
+      <label><input type="checkbox" name="estate-planning" value="left-to-heirs"> Whatever is left of my estate should pass to my heirs</label>
+      <label><input type="checkbox" name="estate-planning" value="specific-heirs"> There are certain monies I'd like to leave to specific heirs</label>
+      <label><input type="checkbox" name="estate-planning" value="maximize-inheritance"> I intend to plan my estate that will maximize my heirs' inheritance</label>
+    </div>
+  </div>
+
+  <!-- Q8 -->
+  <div class="survey-section">
+    <h3>8 You may be concerned that your heirs lack the necessary skills to manage wealth. Which statement most closely reflects your view?</h3>
+    <div class="survey-grid">
+      <label><input type="radio" name="skills" value="do-not-possess"> I believe my heirs do not possess the necessary skills</label>
+      <label><input type="radio" name="skills" value="do-possess"> I believe my heirs do possess the necessary skills</label>
+      <label><input type="radio" name="skills" value="unsure"> I am unsure of the level of interest</label>
+    </div>
+  </div>
+
+  <!-- Q9 -->
+  <div class="survey-section">
+    <h3>9 Which statement most closely reflects your level of personal involvement with charitable organizations, including volunteer time and/or money?</h3>
+    <div class="survey-grid">
+      <label><input type="radio" name="charity-involvement" value="little-or-no"> I have had little or no involvement with charities</label>
+      <label><input type="radio" name="charity-involvement" value="moderate"> I have had moderate involvement with charities</label>
+      <label><input type="radio" name="charity-involvement" value="active"> I have been active with charities</label>
+    </div>
+  </div>
+
+  <!-- Q10 -->
+  <div class="survey-section">
+    <h3>10 Which statement most closely reflects your thoughts regarding the transfer of charitable gifts through your estate plan?</h3>
+    <div class="survey-grid">
+      <label><input type="radio" name="charitable-gifts" value="no-intention"> Charity begins at home. I have no intention of providing for charitable organizations through my estate plan.</label>
+      <label><input type="radio" name="charitable-gifts" value="rather-charity"> I would rather direct money to charity than pay taxes.</label>
+      <label><input type="radio" name="charitable-gifts" value="consider-charity"> As long as my family legacy isn't compromised, I'd consider a charitable gift as part of my estate plan.</label>
+      <label><input type="radio" name="charitable-gifts" value="not-today"> I would like to include charitable gifts in the distribution of my estate in some form, however not today.</label>
+      <label><input type="radio" name="charitable-gifts" value="plan-inclusion"> I plan to include charitable gifts in the distribution of my estate.</label>
+      <label><input type="radio" name="charitable-gifts" value="philanthropy"> Philanthropy is the focal point of my estate plan.</label>
+    </div>
+  </div>
+
+  <!-- Q11 -->
+  <div class="survey-section">
+    <h3>11 What do you think about transferring assets to charitable organizations during your lifetime, when you can see an immediate impact from your gifts?</h3>
+    <p>Select all that apply.</p>
+    <div class="survey-grid">
+      <label><input type="checkbox" name="charitable-transfer" value="major-gifts"> I prefer to make major charitable gifts as soon as possible, so that I can see my assets work during my lifetime.</label>
+      <label><input type="checkbox" name="charitable-transfer" value="some-gifts"> I prefer to make some gifts today. I'd like to explore ways to use tools such as the GIFTABULATOR to achieve other financial objectives as well as philanthropic objectives.</label>
+      <label><input type="checkbox" name="charitable-transfer" value="small-amounts"> I prefer to give relatively small amounts today and wait to contribute my assets at my death.</label>
+      <label><input type="checkbox" name="charitable-transfer" value="no-contributions"> I do not intend to make charitable contributions.</label>
+    </div>
+  </div>
+
+  <!-- Q12 -->
+  <div class="survey-section">
+    <h3>12 Which of the following statements reflect your view regarding the process of family philanthropy? Check all that apply.</h3>
+    <div class="survey-grid">
+      <label><input type="checkbox" name="family-philanthropy" value="individual-thing"> Charitable giving is an individual thing, not easily transformed into a shared experience.</label>
+      <label><input type="checkbox" name="family-philanthropy" value="family-consensus"> Achieving a family consensus around giving is essential to successful family philanthropy.</label>
+      <label><input type="checkbox" name="family-philanthropy" value="resources-for-charity"> All individuals in the family should be provided with resources to give to charity as they see fit.</label>
+      <label><input type="checkbox" name="family-philanthropy" value="family-foundation"> A family foundation will enhance the process of family philanthropy by creating an entity in which all family members can play an important decision-making role.</label>
+      <label><input type="checkbox" name="family-philanthropy" value="private-foundation-complicated"> I view a private family foundation as complicated, and not required for effective family philanthropy.</label>
+      <label><input type="checkbox" name="family-philanthropy" value="shared-philanthropy-experience"> The experience of shared philanthropy provides an opportunity to use actions, not just words to teach children what is important.</label>
+    </div>
+  </div>
+
+  <!-- Q13 -->
+  <div class="survey-section">
+    <h3>13 Please select which area is of philanthropic interest.</h3>
+    <p>Select all that apply.</p>
+    <div class="survey-grid">
+      <label><input type="checkbox" name="philanthropy" value="education"> Education</label>
+      <label><input type="checkbox" name="philanthropy" value="health"> Health</label>
+      <label><input type="checkbox" name="philanthropy" value="social-services"> Social Services</label>
+      <label><input type="checkbox" name="philanthropy" value="arts"> Arts</label>
+      <label><input type="checkbox" name="philanthropy" value="culture"> Culture</label>
+      <label><input type="checkbox" name="philanthropy" value="environment"> Environment and Wildlife</label>
+      <label><input type="checkbox" name="philanthropy" value="international"> International Affairs</label>
+      <label><input type="checkbox" name="philanthropy" value="religious"> Religious</label>
+    </div>
+  </div>
+
+  <!-- Q14 -->
+  <div class="survey-section">
+    <h3>14 Please indicate your preference(s) regarding recognition for philanthropic contributions. (Check all that apply)</h3>
+    <div class="survey-grid">
+      <label><input type="checkbox" name="recognition" value="thank_you_letter"> Thank you Letter</label>
+      <label><input type="checkbox" name="recognition" value="personal_phone_call"> Personal Phone Call</label>
+      <label><input type="checkbox" name="recognition" value="formal_group_reception"> Formal group reception</label>
+      <label><input type="checkbox" name="recognition" value="published_listing"> Published listing</label>
+      <label><input type="checkbox" name="recognition" value="news_release"> News Release</label>
+      <label><input type="checkbox" name="recognition" value="plaque_display"> Plaque or Permanent Display</label>
+      <label><input type="checkbox" name="recognition" value="meeting_with_ceo"> Private meeting with CEO</label>
+      <label><input type="checkbox" name="recognition" value="none"> None</label>
+    </div>
+  </div>
+
+  <div class="survey-consent">
+    <label style="display:flex; align-items:center; gap:8px; font-size:.9rem;">
+      <input id="survey-consent" type="checkbox" required>
+      I agree to the processing of my personal data in accordance with the <a href="#" target="_blank">Privacy Policy</a>.
+    </label>
+    <button class="survey-submit" id="survey-submit">Submit</button>
+  </div>
+</aside>
+
+
+<script>
+(function(){
+  const panel    = document.getElementById('survey-panel');
+  const backdrop = document.getElementById('survey-backdrop');
+  const openBtns = document.querySelectorAll('.open-survey');
+  const closeBtn = document.getElementById('survey-close');
+  const submitBtn= document.getElementById('survey-submit');
+
+  const wealthOther     = document.getElementById('survey-wealth-other');
+  const wealthOtherWrap = document.getElementById('survey-wealth-other-wrap');
+
+  const pBar  = document.getElementById('survey-progress-bar');
+  const pText = document.getElementById('survey-progress-text');
+
+  // --- Panel open/close
+  function openPanel(){
+    panel.classList.add('open');
+    backdrop.classList.add('visible');
+    panel.setAttribute('aria-hidden','false');
+    backdrop.setAttribute('aria-hidden','false');
+  }
+  function closePanel(){
+    panel.classList.remove('open');
+    backdrop.classList.remove('visible');
+    panel.setAttribute('aria-hidden','true');
+    backdrop.setAttribute('aria-hidden','true');
+  }
+  openBtns.forEach(b => b.addEventListener('click', e => { e.preventDefault(); openPanel(); }));
+  closeBtn.addEventListener('click', closePanel);
+  backdrop.addEventListener('click', closePanel);
+
+  // --- "Other" field show/hide (Q1)
+  if (wealthOther){
+    wealthOther.addEventListener('change', () => {
+      wealthOtherWrap.style.display = wealthOther.checked ? 'block' : 'none';
+      updateProgress();
+    });
+  }
+
+  // --- Helpers
+  function isChecked(name){ return document.querySelectorAll(`input[name="${name}"]:checked`).length > 0; }
+  function hasText(name){ const el = document.querySelector(`[name="${name}"]`); return el && el.value.trim() !== ''; }
+
+  // --- Progress (14 вопросов)
+  function updateProgress(){
+    let answered = 0;
+    const total = 14;
+
+    if (isChecked('wealth') || hasText('wealth_other')) answered++;               // Q1
+    if (isChecked('wealth_obligation')) answered++;                               // Q2
+    if (isChecked('values')) answered++;                                          // Q3
+    if (hasText('first_choice_reason')) answered++;                               // Q4
+    if (isChecked('associations')) answered++;                                    // Q5
+    if (isChecked('estate_planning')) answered++;                                 // Q6
+    if (isChecked('estate-planning')) answered++;                                 // Q7
+    if (document.querySelector('input[name="skills"]:checked')) answered++;       // Q8
+    if (document.querySelector('input[name="charity-involvement"]:checked')) answered++; // Q9
+    if (document.querySelector('input[name="charitable-gifts"]:checked')) answered++;    // Q10
+    if (isChecked('charitable-transfer')) answered++;                             // Q11
+    if (isChecked('family-philanthropy')) answered++;                             // Q12
+    if (isChecked('philanthropy')) answered++;                                    // Q13
+    if (isChecked('recognition')) answered++;                                     // Q14
+
+    const percent = Math.round((answered / total) * 100);
+    pBar.style.width = percent + '%';
+    pText.textContent = percent + '% completed';
+  }
+
+  document.addEventListener('input', updateProgress);
+  document.addEventListener('DOMContentLoaded', updateProgress);
+
+  // --- Collect & submit
+  function getCheckedValues(name){
+    return Array.from(document.querySelectorAll(`input[name="${name}"]:checked`)).map(i => i.value);
+  }
+  function collectPayload(){
+    return {
+      // contacts
+      name:  (document.querySelector('[name="name"]')  || {}).value || '',
+      email: (document.querySelector('[name="email"]') || {}).value || '',
+      phone: (document.querySelector('[name="phone"]') || {}).value || '',
+
+      // Q1–Q14
+      wealth: getCheckedValues('wealth'),
+      wealth_other: (document.querySelector('[name="wealth_other"]') || {}).value || '',
+      wealth_obligation: getCheckedValues('wealth_obligation'),
+      values: getCheckedValues('values'),
+      first_choice_reason: (document.querySelector('[name="first_choice_reason"]') || {}).value || '',
+      associations: getCheckedValues('associations'),
+      estate_planning: getCheckedValues('estate_planning'),
+      estate_planning_statements: getCheckedValues('estate-planning'),
+      skills: (document.querySelector('input[name="skills"]:checked') || {}).value || null,
+      charity_involvement: (document.querySelector('input[name="charity-involvement"]:checked') || {}).value || null,
+      charitable_gifts: (document.querySelector('input[name="charitable-gifts"]:checked') || {}).value || null,
+      charitable_transfer: getCheckedValues('charitable-transfer'),
+      family_philanthropy: getCheckedValues('family-philanthropy'),
+      philanthropy: getCheckedValues('philanthropy'),
+      recognition: getCheckedValues('recognition'),
+
+      consent: document.getElementById('survey-consent')?.checked || false
+    };
+  }
+
+  submitBtn.addEventListener('click', async (e) => {
+    e.preventDefault();
+    const payload = collectPayload();
+
+    if (!payload.consent){
+      alert('Please agree to the Privacy Policy to continue.');
+      return;
+    }
+    try{
+      const res = await fetch('/api/survey', {
+        method: 'POST',
+        headers: { 'Content-Type':'application/json' },
+        body: JSON.stringify(payload)
+      });
+      if (!res.ok) throw new Error('Network error');
+
+      alert('Thank you! Your response has been submitted.');
+      // reset
+      panel.querySelectorAll('input[type="checkbox"], input[type="radio"]').forEach(i => i.checked = false);
+      panel.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"], textarea').forEach(i => i.value = '');
+      updateProgress();
+      closePanel();
+    }catch(err){
+      console.error(err);
+      alert('Submission failed. Please try again later.');
+    }
+  });
+})();
+</script>
 
 
 
 </body>
 </html>
-
-
 
 
 
