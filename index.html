@@ -56,28 +56,28 @@
    .page-title {
   text-align: left;
   font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-  font-weight: 600;                 /* вместо 800 — мягче */
+  font-weight: 600;                 
   line-height: 1.2;
   letter-spacing: 0;
   margin: 6px 0 10px;
   font-size: clamp(22px, 3.4vw, 34px);
   position: relative;
   animation: fadeUp .7s ease both;
-  color: #0f172a;                   /* спокойный тёмный */
+  color: #0f172a;                   
 }
 
 .page-title:before {
-  content: none;                    /* убираем боковую полоску */
+  content: none;                    
 }
 
 .page-title .accent {
-  color: #0f172a;                   /* обычный тёмный текст */
+  color: #0f172a;                   
   background: none;
   -webkit-text-fill-color: initial;
 }
 
 .page-title .muted {
-  color: #475569;                   /* приглушённый серый */
+  color: #475569;                   
   font-weight: 500;
 }
 
@@ -166,8 +166,8 @@
 
 /* Мини-плеер превью */
 .hover-preview {
-  position: fixed;                /* якорим к окну, удобнее позиционировать */
-  width: 280px;                   /* можно менять, держим 16:9 */
+  position: fixed;                
+  width: 280px;                   
   aspect-ratio: 16 / 9;
   background: #000;
   border-radius: 10px;
@@ -177,7 +177,7 @@
   transform: translateY(6px) scale(.98);
   transition: opacity .15s ease, transform .15s ease;
   z-index: 9999;
-  pointer-events: none;           /* не перехватывает курсор, чтобы не мигало */
+  pointer-events: none;           
 }
 .hover-preview.show {
   opacity: 1;
@@ -192,7 +192,7 @@
 
 
 
-/* Панель слева оставляем как есть */
+
 .viewer-ui{
   position:absolute; top:12px; left:12px; z-index:2;
   background:rgba(255, 255, 255, 0);
@@ -201,13 +201,13 @@
   border-radius:10px; padding:8px; pointer-events:auto;
 }
 
-/* Селект: белый фон + тёмный текст, чтобы всё читалось */
+
 #panoSelect{
   appearance:none;
   font:500 14px/1.2 system-ui,-apple-system,Segoe UI,Roboto,Arial;
-  color:#111;                            /* тёмный текст */
-  background:rgba(255,255,255,.96);      /* светлый фон */
-  border:1px solid #d1d5db;              /* светлая рамка */
+  color:#111;                            
+  background:rgba(255,255,255,.96);      
+  border:1px solid #d1d5db;              
   border-radius:8px;
   padding:8px 32px 8px 10px;
   min-width:240px; max-width:62vw; outline:none;
@@ -215,7 +215,7 @@
 }
 #panoSelect:focus{ box-shadow:0 0 0 2px rgba(99,102,241,.35); }
 
-/* Короткая подсветка ошибки при выборе пункта без ссылки */
+
 #panoSelect.invalid{
   border-color:#ef4444 !important;
   box-shadow:0 0 0 2px rgba(239,68,68,.35) !important;
@@ -223,28 +223,28 @@
 
 
 
-/* Хедер */
 
 
 
 
-/* Внутренняя обёртка: чуть паддинга справа,
-   чтобы меню не липло к самому краю */
+
+
+   
 .nav-inner{
   width:min(1200px,95vw);
   margin:0 auto;
   display:flex; align-items:center; gap:16px;
-  padding:30px 12px;                 /* ← добавили правый (и левый) отступ */
+  padding:30px 12px;                
 }
 
 /* Лого слева — как было */
 .brand img{ display:block; height:32px; width:auto; }
 
-/* МЕНЮ справа */
+
 .nav{
-  margin-left:auto;                   /* ← уводим блок меню вправо */
-  display:flex; gap:12px;             /* ← расстояние между кнопками */
-  justify-content:flex-end;           /* ← прижимаем к правому краю контейнера */
+  margin-left:auto;                   
+  display:flex; gap:12px;             
+  justify-content:flex-end;           
   flex-wrap:wrap;
 }
 
@@ -264,9 +264,9 @@
 
 
 /* === Philanthropy Hero === */
-/* === Hero adapter: делаем hero-phil строгим, как таблицы === */
 
-/* 1) Бейдж на всю ширину (как «инпут» сверху слева) */
+
+
 .hero-phil.badge-wide .hero-badge{
   display:block;
   width:100%;
@@ -277,10 +277,10 @@
   border-radius:6px;
 }
 
-/* 2) Акцент под шапку (#0077ff/#257cff) */
+
 .hero-phil.is-brand{ --accent:#257cff; --ring:rgba(37,124,255,.28); }
 
-/* 3) Кнопки — матовый синий и мягкий hover */
+
 .hero-phil .btn-primary{
   background:var(--accent);
   border-color:var(--accent);
@@ -291,12 +291,12 @@
 .hero-phil .btn-ghost{ background:#fff; }
 .hero-phil .btn-ghost:hover{ background:#f8fafc; }
 
-/* 4) Чуть компактнее вертикальные отступы */
+
 .hero-phil.compact{ padding:12px 14px; }
 .hero-phil.compact .hero-lead{ margin-top:6px; }
 .hero-phil.compact .hero-stats{ margin-top:8px; gap:8px; }
 
-/* 5) На широких — баланс колонок как в скрине */
+
 @media (min-width: 980px){
   .hero-phil{ grid-template-columns: 1.05fr .95fr; }
 }
@@ -305,8 +305,8 @@
 
 
 html { scroll-behavior: smooth; }
-/* чтобы заголовок не прятался под липкий header */
-#naming { scroll-margin-top: 88px; }  /* подгони число под реальную высоту шапки */
+
+#naming { scroll-margin-top: 88px; }  
 @media (max-width: 640px){
   #naming { scroll-margin-top: 72px; }
 }
@@ -324,26 +324,26 @@ html { scroll-behavior: smooth; }
 
 
 /* ——— Hero polish ——— */
-.hero-phil.luxe{                     /* мягкий «премиум» каркас */
+.hero-phil.luxe{                     
   position:relative; border-radius:12px;
   border:1px solid var(--border); background:#fff;
   padding:14px 16px; display:grid; gap:16px;
 }
 
 
-/* заголовок — лёгкий градиент только на 2-й строке */
+
 .hero-phil .hero-line.gradient{
   background:linear-gradient(90deg,var(--accent) 0%,#9333ea 100%);
   -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
 }
 
-/* мини-мета под заголовком */
+
 .hero-meta{ display:flex; flex-wrap:wrap; gap:8px; align-items:center;
   color:#475569; font:600 12px/1.2 Inter, system-ui;
 }
 .hero-meta .dot{ width:4px; height:4px; border-radius:50%; background:#cbd5e1; }
 
-/* KPI-чипы в виде карточек */
+
 .hero-stats.card{
   display:grid; grid-template-columns:repeat(3,minmax(0,1fr));
   gap:10px; margin-top:8px; padding:0; list-style:none;
@@ -356,7 +356,7 @@ html { scroll-behavior: smooth; }
 .hero-stats.card li strong{ font:800 18px/1 Inter; color:#0f172a; }
 .hero-stats.card li span{ font:600 12px/1.2 Inter; color:#475569; }
 
-/* компактные кнопки */
+
 .hero-ctas .btn{ height:38px; padding:0 14px; border-radius:10px; }
 .hero-ctas .btn-outline{ background:transparent; border:1px solid var(--border); color:#0f172a; }
 .hero-ctas .btn-outline:hover{ background:#f8fafc; }
@@ -364,23 +364,23 @@ html { scroll-behavior: smooth; }
 @media (max-width:900px){ .hero-stats.card{ grid-template-columns:1fr 1fr; } }
 
 
-/* Двухколоночный hero: mobile-first */
+
 .hero-phil{
   display:grid;
-  grid-template-columns: 1fr;      /* мобильная одна колонка */
+  grid-template-columns: 1fr;     
   align-items:start;
   gap:18px;
 }
 @media (min-width: 980px){
-  .hero-phil{ grid-template-columns: 360px 1fr; } /* слева бейдж, справа контент */
+  .hero-phil{ grid-template-columns: 360px 1fr; } 
 }
 
 
-/* Явно укажем области */
+
 .hero-left{ align-self:start; }
 .hero-right{ display:flex; flex-direction:column; gap:12px; }
 
-/* Бейдж – компактный, не растягивается по высоте */
+
 .hero-badge{
   display:block; width:100%; height:auto; 
   padding:10px 12px; background:#f8fafc; color:#111;
@@ -388,12 +388,12 @@ html { scroll-behavior: smooth; }
   font:600 13px/1.2 Inter, system-ui; letter-spacing:.02em;
 }
 
-/* Чуть плотнее кпи-чипы */
+
 .hero-stats.card{ margin-top:4px; }
 
 
 
-/* лёгкий shimmer у второй строки заголовка */
+
 .hero-phil .hero-line.gradient{
   background:linear-gradient(90deg,var(--accent) 0%,#9333ea 50%,#06b6d4 100%);
   -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
@@ -402,7 +402,7 @@ html { scroll-behavior: smooth; }
 }
 @keyframes heroShimmer{ 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
 
-/* мягкий «ореол» за правым столбцом */
+
 .hero-phil.luxe::after{
   content:"";
   position:absolute; inset: -4px -4px -4px 340px;  /* не заезжает под левую рейку */
@@ -424,36 +424,35 @@ html { scroll-behavior: smooth; }
 /* HERO: full-width, no left badge */
 .hero-phil .hero-left,
 .hero-phil .hero-badge{
-  display:none !important;           /* скрыть колонку и сам бейдж */
+  display:none !important;           
 }
 
 .hero-phil{
-  grid-template-columns: 1fr !important; /* одна колонка на всю ширину */
-}
+  grid-template-columns: 1fr !important; 
 
 .hero-phil .hero-right{
-  grid-column: 1 / -1;               /* контент растягивается на весь hero */
-  margin: 0; padding-left: 0;        /* без «откушенного» левого поля */
+  grid-column: 1 / -1;               
+  margin: 0; padding-left: 0;       
 }
 
-/* если где-то остался зазор — подстрахуемся */
+
 .section > .hero-phil{ width:100%; }
 
-/* (опционально) если захочешь убрать цветную рейку слева — раскомментируй: */
+
 /* .hero-phil.luxe::before{ display:none; } */
 
-/* если убрали .hero-left из разметки */
+
 .hero-phil{ grid-template-columns: 1fr; }
 
 
-/* делаем --ang анимируемым */
+
 @property --ang {
   syntax: "<angle>";
   inherits: false;
   initial-value: 0deg;
 }
 
-/* ключевые кадры: 1 полный оборот */
+
 @keyframes nav-ring-spin {
   to { --ang: 1turn; }
 }
@@ -462,27 +461,26 @@ html { scroll-behavior: smooth; }
 
 
 
-/* NAV: бегущая обводка при hover/focus */
+
 .nav-link{
   position: relative;
-  border-radius: 8px;       /* держим как у тебя */
-  isolation: isolate;       /* псевдоэлемент над фоном, но клики проходят */
+  border-radius: 8px;       
+  isolation: isolate;       
 }
 
-/* рисуем тонкое кольцо поверх кнопки и крутим его конусным градиентом */
-.nav-link::before{
-  --ring-w: 2px;            /* толщина обводки */
 
+.nav-link::before{
+  --ring-w: 2px;            
   content: "";
   position: absolute;
-  inset: calc(-1 * var(--ring-w));      /* чтобы кольцо не «съедало» padding */
+  inset: calc(-1 * var(--ring-w));     
   border-radius: inherit;
   padding: var(--ring-w);
 
   background: conic-gradient(from var(--ang,0deg),
              #dbeafc, #eae1ff, #d2edf1, #ffffff);
 
-  /* показываем только «кольцо», а центр – прозрачный */
+ 
   -webkit-mask: linear-gradient(#000 0 0) content-box,
                  linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
@@ -504,27 +502,27 @@ html { scroll-behavior: smooth; }
   to { --ang: 360deg; }
 }
 
-/* уважение к людям с ограничением анимаций: просто мягкая подсветка */
+
 @media (prefers-reduced-motion: reduce){
   .nav-link::before{ animation: none; opacity: 0; }
   .nav-link:hover::before,
   .nav-link:focus-visible::before{ opacity: .6; }
 }
 
-/* Фолбэк для очень старых браузеров: тонкая статичная рамка при hover */
+
 @supports not ((mask-composite: exclude) or (-webkit-mask-composite: xor)){
   .nav-link:hover{ outline: 2px solid #8b5cf6; outline-offset: 0; }
 }
 
-/* только для кнопок в hero */
+
 .hero-ctas .btn,
 .hero-ctas .btn:link,
 .hero-ctas .btn:visited,
 .hero-ctas .btn:hover,
 .hero-ctas .btn:focus,
 .hero-ctas .btn:active {
-  text-decoration: none;     /* убрать underline */
-  color: #fff;               /* на всякий случай зафиксируем белый */
+  text-decoration: none;     
+  color: #fff;               
 }
 
 /* чуть аккуратнее выравнивание и форма */
@@ -535,37 +533,37 @@ html { scroll-behavior: smooth; }
   gap: 8px;
   height: 38px;
   padding: 0 16px;
-  border-radius: 9999px;     /* идеально круглые края (можно оставить 10px, если так нужно) */
-  line-height: 1;            /* без «подпрыгивания» текста */
+  border-radius: 9999px;     
+  line-height: 1;            
 }
 
 
 
 
-/* 1) Никогда не даём странице разъезжаться по оси X */
+
 html, body { overflow-x: hidden; }
 
-/* 2) Клипнем декоративный ореол внутри hero, чтобы он не создавал скролл */
+
 .hero-phil { overflow: hidden; }
 
-/* 3) Уточним поведение сеток на узких экранах — карточки могут сжиматься */
+
 .hero-stats.card li,
-.hero-funding li { min-width: 0; }      /* разрешаем сжатие */
+.hero-funding li { min-width: 0; }      
 .hero-stats.card li span { word-break: break-word; }
 
-/* 4) Совсем узкие экраны — в одну колонку, гарантированно без переполнения */
+
 @media (max-width: 420px){
   .hero-stats.card { grid-template-columns: 1fr; }
 }
 
-/* 5) «Бегущая» обводка у нав-ссылок не должна влиять на макет */
-.nav-link { contain: paint; }           /* изолируем перерисовку псевдоэлемента */
+
+.nav-link { contain: paint; }           
 
 
-/* не даём странице расползаться по X */
+
 html, body { overflow-x: hidden; }
 
-/* ширина 95vw С УЧЁТОМ padding */
+
 .nav-inner,
 .section,
 .table-wrap,
@@ -575,23 +573,23 @@ html, body { overflow-x: hidden; }
   box-sizing: border-box;
 }
 
-/* таблицы: не выталкивать контейнер и красиво переносить текст */
-.table-wrap { overflow-x: hidden; }           /* или auto, если хочешь горизонтальный скролл только у таблицы */
+
+.table-wrap { overflow-x: hidden; }           
 .naming-table { width: 100%; table-layout: auto; }
 .naming-table th, .naming-table td { min-width: 0; }
 .naming-table .desc { word-break: break-word; }
 
-/* ореол hero клипим внутри, чтобы не создавать скролл */
+
 .hero-phil { overflow: hidden; }
 @media (max-width: 480px){
   .hero-phil.luxe::after{ inset: -2px -2px -2px 120px; }
 }
 
-/* общее: нормальная переносимость текста и выравнивание */
+
 .naming-table th, .naming-table td { vertical-align: top; }
 .naming-table .desc { white-space: normal; word-break: break-word; overflow-wrap: anywhere; }
 
-/* на мобиле отключаем fade-анимацию строк, чтобы текст не исчезал */
+
 @media (max-width:700px){
   .naming-table tbody tr{
     opacity: 1 !important;
@@ -600,16 +598,16 @@ html, body { overflow-x: hidden; }
   }
 }
 
-/* Мобильная раскладка «карточкой» только для второй таблицы */
+
 @media (max-width:700px){
-  .naming-table.stack thead { display: none; }   /* прячем шапку */
+  .naming-table.stack thead { display: none; }   
 
   .naming-table.stack tbody tr{
     display: grid;
-    grid-template-columns: 1fr auto auto;        /* Space | Cost | # */
+    grid-template-columns: 1fr auto auto;        
     grid-template-areas:
       "space cost avail"
-      "desc  desc desc";                          /* описание — на всю ширину */
+      "desc  desc desc";                         
     gap: 8px 10px;
     padding: 12px 10px;
     border-bottom: 1px solid #e6e8eb;
@@ -628,10 +626,10 @@ html, body { overflow-x: hidden; }
   --hdr-accent:#257cff;
   --hdr-bg: rgba(0,119,255,.78);
   --hdr-blur: 10px;
-  --hdr-speed: .25s;                /* базовая скорость анимаций */
+  --hdr-speed: .25s;                
 }
 
-/* сам header: стекло + плавные переходы */
+
 .site-header{
   position: sticky; top:0; z-index:50;
   background: var(--hdr-bg);
@@ -641,18 +639,18 @@ html, body { overflow-x: hidden; }
   transform: translateZ(0);
   transition:
     background var(--hdr-speed) ease,
-    transform .22s ease;            /* для автоскрытия */
+    transform .22s ease;           
 }
 
-/* компактный режим при скролле */
+
 .site-header.is-compact .nav-inner{ padding: 10px 12px; }
 .site-header .nav-inner{ transition: padding var(--hdr-speed) ease; }
 .site-header.is-compact .brand img{ height: 24px; transition: height var(--hdr-speed); }
 
-/* авто-скрытие при скролле вниз */
+
 .site-header.is-hidden{ transform: translateY(-100%); }
 
-/* «бегущая» тонкая линия снизу */
+
 .site-header::after{
   content:"";
   position:absolute; left:0; right:0; bottom:0; height:2px;
@@ -668,7 +666,7 @@ html, body { overflow-x: hidden; }
 }
 @keyframes hdr-shimmer{ to{ background-position:200% 0; } }
 
-/* прогресс-бар прокрутки (добавится скриптом) */
+
 .site-header .scrollbar{
   position:absolute; left:0; bottom:0; height:2px; width:100%;
   transform-origin: 0 50%;
@@ -677,7 +675,7 @@ html, body { overflow-x: hidden; }
   pointer-events:none; mix-blend-mode: soft-light;
 }
 
-/* маркер, который «ездит» по пунктам меню */
+
 .nav{ position:relative; }
 .nav-marker{
   position:absolute; top:50%; transform: translateY(-50%);
@@ -689,25 +687,25 @@ html, body { overflow-x: hidden; }
 }
 .nav:hover .nav-marker{ opacity:1; }
 
-/* лёгкий hover у ссылок + твоя «бегущая обводка» остаётся */
+
 .nav-link{ transition: background .15s ease, transform .06s ease; }
 .nav-link:active{ transform: translateY(1px); }
 
-/* без лишних движух для тех, кто не любит анимации */
+
 @media (prefers-reduced-motion: reduce){
   .site-header::after, .site-header .scrollbar, .nav-marker{ animation:none; transition:none; }
 }
 
 
 
-/* глобальные ручки */
+
 .site-header{
-  --ring-speed: 1.6s;        /* скорость «бегущей» обводки у пунктов меню */
-  --hdr-line-speed: 5s;      /* скорость бегущей линии снизу хедера */
-  --hdr-speed: .25s;         /* скорость сжатия/раскрытия хедера */
+  --ring-speed: 1.6s;        
+  --hdr-line-speed: 5s;      
+  --hdr-speed: .25s;         
 }
 
-/* привязываем переменные к анимациям */
+
 .nav-link::before{
   animation: nav-ring-spin var(--ring-speed,2.5s) linear infinite paused;
 }
@@ -720,7 +718,7 @@ html, body { overflow-x: hidden; }
 @media (max-width:700px){
   .naming-table.stack tbody tr{ gap:6px 8px; padding:10px; }
   .naming-table.stack .desc{ font-size:14px; line-height:1.35; }
-  .naming-table.stack .desc br{ display:none; }  /* режем лишние разрывы */
+  .naming-table.stack .desc br{ display:none; }  
 }
 
 .nav-link:focus-visible{
@@ -1886,6 +1884,7 @@ html, body { overflow-x: hidden; }
 
 </body>
 </html>
+
 
 
 
