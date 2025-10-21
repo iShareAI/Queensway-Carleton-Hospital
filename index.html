@@ -800,6 +800,37 @@ html, body { overflow-x: hidden; }
   /* small note under sliders */
   .survey-row{ display:grid; grid-template-columns:1fr auto; gap:8px; align-items:center; }
   .survey-slider{ width:100%; }
+
+
+
+/* ===== Immersive photo reel ===== */
+.photo-reel{ width:100vw; margin:0 calc(50% - 50vw); }
+.photo-reel .reel-wrap{ display:grid; grid-template-columns:1fr; gap:6px; }
+.photo-reel .reel-item{ position:relative; height:min(86vh, 900px); border-radius:10px; overflow:hidden; }
+.photo-reel img{ width:100%; height:100%; object-fit:cover; display:block; filter:saturate(1.02) contrast(1.02); transition: transform .35s ease; }
+.photo-reel .reel-item:hover img{ transform: scale(1.02); }
+
+/* Lightbox */
+.lb{ position:fixed; inset:0; background:rgba(0,0,0,.92); display:none; align-items:center; justify-content:center; z-index:99999; }
+.lb.open{ display:flex; }
+.lb img{ max-width:96vw; max-height:96vh; border-radius:10px; box-shadow:0 20px 60px rgba(0,0,0,.5); }
+.lb .ctrl{ position:fixed; top:50%; transform:translateY(-50%); font:700 28px/1 system-ui; color:#fff; background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.25); padding:10px 14px; border-radius:10px; cursor:pointer; user-select:none; }
+.lb .prev{ left:18px; } .lb .next{ right:18px; }
+.lb .close{ top:18px; right:18px; transform:none; font-size:26px; }
+@media (max-width:700px){
+  .photo-reel .reel-item{ height:70vh; border-radius:8px; }
+  .lb .ctrl{ padding:8px 12px; font-size:22px; }
+}
+
+
+
+
+
+
+
+
+
+
 </style>
 
 
@@ -964,7 +995,7 @@ html, body { overflow-x: hidden; }
     </table>
   </div>
   <!-- ===== Your detailed table under the first one ===== -->
-<div class="section"><h2 class="table-title">GENERAL HOSPITAL — PART 4 EXPANSION</h2></div>
+<div class="section"><h2 class="table-title">Queensway Carleton Hospital — PART 4 EXPANSION</h2></div>
 
 <div class="table-wrap">
   <table class="naming-table stack">
@@ -989,7 +1020,7 @@ html, body { overflow-x: hidden; }
   <td class="cost">$1,000,000</td>
   <td class="avail">1</td>
   <td class="desc">
-    The Emergency Department Entrance is the first place patients and families see when they walk into General Hospital’s Emergency Department—often during some of life’s most difficult moments.<br><br>
+    The Emergency Department Entrance is the first place patients and families see when they walk into Queensway Carleton Hospital’s Emergency Department—often during some of life’s most difficult moments.<br><br>
     It’s a busy, essential space that helps people find their way and sets the tone for the care ahead.<br><br>
     Be a part of the first thing people see when they come through our doors.
   </td>
@@ -1033,7 +1064,7 @@ html, body { overflow-x: hidden; }
         <td class="cost">$100,000</td>
         <td class="avail">1</td>
         <td class="desc">
-          The Staff Facility/Lounge is a dedicated space where the General Hospital care team can recharge, connect, and find support during their demanding shifts.<br><br>
+          The Staff Facility/Lounge is a dedicated space where the Queensway Carleton Hospital care team can recharge, connect, and find support during their demanding shifts.<br><br>
           This space fosters camaraderie and well-being, helping our team stay refreshed and ready to provide high-quality, compassionate, and coordinated care every day.<br><br>
           Be a part of the everyday moments that support those who care for our community.
         </td>
@@ -1044,7 +1075,7 @@ html, body { overflow-x: hidden; }
         <td class="avail">2</td>
         <td class="desc">
           This calm, inviting room is designed to provide patients and their loved ones with privacy, comfort, and a welcoming atmosphere.<br><br>
-          It’s where General Hospital care teams meet to share important information, offer support, and provide education during some of the most meaningful moments in a patient’s care journey.<br><br>
+          It’s where Queensway Carleton Hospital care teams meet to share important information, offer support, and provide education during some of the most meaningful moments in a patient’s care journey.<br><br>
           Be a part of those meaningful moments that build trust, understanding, and connection throughout a patients care journey.
         </td>
       </tr>
@@ -1088,13 +1119,45 @@ html, body { overflow-x: hidden; }
         <td class="avail">9</td>
         <td class="desc">
           Offices are the behind-the-scenes hubs where planning, coordination, and leadership take shape.<br><br>
-          From managing schedules and resources to making decisions that keep care running smoothly, this is where the General Hospital team handles the essential work that supports every patient journey.<br><br>
+          From managing schedules and resources to making decisions that keep care running smoothly, this is where the Queensway Carleton Hospital team handles the essential work that supports every patient journey.<br><br>
           Be a part of the work that powers care—where organization, focus, and teamwork come together every day.
         </td>
       </tr>
     </tbody>
   </table>
 </div>
+
+
+
+
+<!-- ===== Immersive Photo Reel ===== -->
+<section class="photo-reel" aria-label="Project photos">
+  <div class="section"><h2 class="table-title">Project Gallery</h2></div>
+  <div class="reel-wrap" id="reel">
+    <!-- просто список картинок; добавляй/меняй как нужно -->
+    
+
+    <figure class="reel-item"><img src="img/2.png"  alt="" loading="lazy" decoding="async"></figure>
+    <figure class="reel-item"><img src="img/3.png"  alt="" loading="lazy" decoding="async"></figure>
+    <figure class="reel-item"><img src="img/4.png"  alt="" loading="lazy" decoding="async"></figure>
+    <figure class="reel-item"><img src="img/5.png"  alt="" loading="lazy" decoding="async"></figure>
+    <figure class="reel-item"><img src="img/6.png"  alt="" loading="lazy" decoding="async"></figure>
+    <figure class="reel-item"><img src="img/7.png"  alt="" loading="lazy" decoding="async"></figure>
+    <figure class="reel-item"><img src="img/8.png"  alt="" loading="lazy" decoding="async"></figure>
+    <figure class="reel-item"><img src="img/9.png"  alt="" loading="lazy" decoding="async"></figure>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div class="lb" id="lb" aria-hidden="true">
+  <button class="ctrl close" aria-label="Close">✕</button>
+  <button class="ctrl prev"  aria-label="Previous">‹</button>
+  <img id="lbImg" alt="">
+  <button class="ctrl next"  aria-label="Next">›</button>
+</div>
+
+
+
 
   
   <script>
@@ -1115,9 +1178,9 @@ html, body { overflow-x: hidden; }
 (function () {
   // ---- Проекты ----
   const PROJECTS = {
-    "0": { id:"0", name:"General Hospital",
+    "0": { id:"0", name:"",
       viewer:"https://app.seekbeak.com/v/A0zrX6AMqvQ",
-      titleTop:["GENERAL HOSPITAL — PART 4 EXPANSION","Inpatient Unit — Typical Floor Plan","Levels 5, 6, 7"]
+      titleTop:[" — PART 4 EXPANSION","Inpatient Unit — Typical Floor Plan","Levels 5, 6, 7"]
 
     },
     "1": { id:"1", name:"Ken Sargent House",
@@ -1270,7 +1333,7 @@ html, body { overflow-x: hidden; }
       u.searchParams.set('project', proj.id);
       history.pushState({project: proj.id}, '', u.toString());
     }
-    document.title = `${proj.name} — General Hospital 360°`;
+    document.title = `${proj.name}  Queensway Carleton Hospital -  360°`;
   }
 
   // Навигация из хедера и история
@@ -1761,6 +1824,63 @@ html, body { overflow-x: hidden; }
   });
 })();
 </script>
+
+
+
+<script>
+(() => {
+  // собираем картинки
+  const thumbs = Array.from(document.querySelectorAll('#reel img'));
+  const lb = document.getElementById('lb');
+  const lbImg = document.getElementById('lbImg');
+  const prevBtn = lb.querySelector('.prev');
+  const nextBtn = lb.querySelector('.next');
+  const closeBtn = lb.querySelector('.close');
+  let idx = 0;
+
+  function open(i){
+    idx = i;
+    lbImg.src = thumbs[idx].src;
+    lb.classList.add('open');
+    lb.setAttribute('aria-hidden','false');
+    document.body.style.overflow = 'hidden';
+  }
+  function close(){
+    lb.classList.remove('open');
+    lb.setAttribute('aria-hidden','true');
+    document.body.style.overflow = '';
+    // убираем src, чтобы выгрузить большую картинку
+    setTimeout(()=> lbImg.src = '', 200);
+  }
+  function step(d){
+    idx = (idx + d + thumbs.length) % thumbs.length;
+    lbImg.src = thumbs[idx].src;
+  }
+
+  thumbs.forEach((img,i)=> img.addEventListener('click', ()=> open(i)));
+  nextBtn.addEventListener('click', ()=> step(+1));
+  prevBtn.addEventListener('click', ()=> step(-1));
+  closeBtn.addEventListener('click', close);
+  lb.addEventListener('click', (e)=> { if (e.target === lb) close(); });
+
+  // клавиатура
+  window.addEventListener('keydown', (e)=>{
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowRight') step(+1);
+    if (e.key === 'ArrowLeft')  step(-1);
+  });
+
+  // swipe на тач-экранах
+  let sx = 0;
+  lb.addEventListener('touchstart', e=> sx = e.touches[0].clientX);
+  lb.addEventListener('touchend',   e=>{
+    const dx = e.changedTouches[0].clientX - sx;
+    if (Math.abs(dx) > 40) step(dx < 0 ? +1 : -1);
+  });
+})();
+</script>
+
 
 
 
